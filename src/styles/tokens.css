@@ -1,0 +1,60 @@
+/*
+ * Design tokens — FOUNDATION (ARCHITECTURE §1, §13).
+ *
+ * COLOURS: NEUTRAL — NOT BRAND, final palette waits for logo (D17).
+ * Greyscale only. Contrast to be re-verified once real colour tokens exist (§9).
+ * Measured on --color-bg #ffffff: text #1a1a1a ≈ 17.4:1, muted #595959 ≈ 7.0:1,
+ * focus ring #1a1a1a ≈ 17.4:1 (≥ 3:1 required, §9), border #767676 ≈ 4.5:1.
+ *
+ * TYPE: system font stack until D17 (no brand or display fonts).
+ */
+:root {
+  /* NEUTRAL — NOT BRAND, final palette waits for logo (D17) */
+  --color-bg: #ffffff;
+  --color-surface: #f2f2f2;
+  --color-text: #1a1a1a;
+  --color-text-muted: #595959;
+  --color-border: #767676;
+  --color-focus: #1a1a1a;
+  --color-focus-halo: #ffffff;
+
+  /* System font stack (no web fonts until D17) */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif;
+
+  /* Type scale (rem, 16 px base): classic typographic scale 14/16/18/21/24/30/36/48 */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.3125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.875rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+
+  --leading-tight: 1.2;
+  --leading-body: 1.55;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* Layout */
+  --container-max: 72rem;
+  --container-gutter: var(--space-4);
+  --measure: 70ch; /* readable line length (< 80 characters) */
+  --tap-target-min: 44px; /* §9, BP §11 */
+
+  /* Breakpoints are documented constants (§12): 768px, 1024px.
+     Custom properties cannot be used in media queries; use the literal values. */
+
+  /* Focus ring */
+  --focus-width: 3px;
+  --focus-offset: 2px;
+}

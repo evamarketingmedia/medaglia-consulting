@@ -1,0 +1,121 @@
+/*
+ * Base element styles — FOUNDATION (ARCHITECTURE §9).
+ * NEUTRAL — NOT BRAND, final palette waits for logo (D17). No decoration, no animation.
+ */
+html {
+  font-family: var(--font-sans);
+  font-size: 100%;
+  line-height: var(--leading-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+body {
+  font-size: var(--text-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: var(--leading-tight);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: var(--text-2xl);
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+h3 {
+  font-size: var(--text-lg);
+}
+
+h4 {
+  font-size: var(--text-md);
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: var(--text-3xl);
+  }
+
+  h2 {
+    font-size: var(--text-2xl);
+  }
+}
+
+p,
+li,
+dd {
+  max-width: var(--measure);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Visible keyboard focus, >= 3:1 against the neutral background (§9, WCAG 2.4.7 / 2.4.11). */
+:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+  box-shadow: 0 0 0 calc(var(--focus-offset) + var(--focus-width)) var(--color-focus-halo);
+}
+
+/* The programmatic focus target of the skip link shows no ring for mouse users. */
+main:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Reduced motion baseline: no animation is used at launch (§9). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visually hidden, still announced by assistive technology. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Skip link: first focusable element, visible on focus (§9). */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-target-min);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: none;
+}

@@ -1,0 +1,75 @@
+---
+/**
+ * BaseLayout — TECHNICAL FOUNDATION ONLY (Phase 3B). ARCHITECTURE §4, §6, §9, N5.
+ *
+ * Provides: <html lang="it">, charset, viewport, title, meta description,
+ * robots (required; noindex, nofollow outside production), canonical on indexable pages, skip link,
+ * <main id="main">, shared stylesheets (emitted as external files: §10.1).
+ *
+ * Deliberately NOT here yet (attach points marked below):
+ *   SeoHead (OG/Twitter, JSON-LD) — build step 5
+ *   Header, nav disclosure, Footer + legal block, StickyBar — build step 2
+ *   analytics-init.ts — build step 6 (no provider until N4)
+ */
+import '../styles/tokens.css';
+import '../styles/reset.css';
+import '../styles/base.css';
+import '../styles/layout.css';
+import { assertPagePolicy, buildCanonical, resolveRobots } from '../lib/seo/meta.ts';
+import type { Robots } from '../lib/seo/meta.ts';
+import type { SiteEnv } from '../lib/env.ts';
+
+interface Props {
+  /** <title>. Required. Final titles come verbatim from SP via routes.ts (later). */
+  title: string;
+  /** Meta description. Required. Final values verbatim from SP (later). */
+  description: string;
+  /**
+   * DECLARED page robots policy (required, S7): 'index, follow' | 'noindex, follow' |
+   * 'noindex, nofollow' (the last only for the development page; D7 deferred).
+   * Non-production always renders "noindex, nofollow" (env-forced, N5).
+   */
+  robots: Robots;
+  /** Route path, e.g. "/contatti/". Required for 'index, follow'; forbidden on noindex pages (§6). */
+  path?: string;
+}
+
+const { title, description, path, robots } = Astro.props;
+
+if (typeof title !== 'string' || title.trim() === '') throw new Error('BaseLayout: `title` must not be empty');
+if (typeof description !== 'string' || description.trim() === '') throw new Error('BaseLayout: `description` must not be empty');
+// Throws on an unknown robots value, an indexable page without a path, or a noindex page with a path.
+// Always checked against the DECLARED value, never the env-forced one.
+assertPagePolicy(path, robots);
+
+// Resolved once in astro.config.mjs (shared resolver, src/lib/env.ts) and injected at build time.
+const injectedEnv: string = __MEDAGLIA_SITE_ENV__;
+if (injectedEnv !== 'production' && injectedEnv !== 'non-production') {
+  throw new Error(`BaseLayout: invalid build site env ${JSON.stringify(injectedEnv)}`);
+}
+const siteEnv: SiteEnv = injectedEnv;
+const effectiveRobots = resolveRobots(robots, siteEnv);
+const canonical = path === undefined ? undefined : buildCanonical(path, Astro.site);
+---
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={effectiveRobots} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {/* ATTACH LATER (step 5): SeoHead — OG/Twitter tags (og:image omitted while I1 is missing, N7) and JSON-LD. */}
+    {/* No favicon: none exists until D17 assets are delivered (U1). */}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Vai al contenuto principale</a>
+    {/* ATTACH LATER (step 2): <Header /> with nav disclosure and header CTA (N9). */}
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    {/* ATTACH LATER (step 2): <Footer /> with legal block; <StickyBar /> (<768 px). */}
+    {/* ATTACH LATER (step 6): analytics-init.ts — no provider until N4. */}
+  </body>
+</html>

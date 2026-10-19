@@ -1,0 +1,11 @@
+{
+  "extends": "astro/tsconfigs/strictest",
+  "compilerOptions": {
+    // Shared TS modules (src/lib/release, src/content) are also executed directly by
+    // Node's native type stripping (scripts/check-release.mjs). Only erasable syntax
+    // is allowed so that this stays possible (no enums, namespaces, parameter properties).
+    "erasableSyntaxOnly": true
+  },
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", "node_modules"]
+}
