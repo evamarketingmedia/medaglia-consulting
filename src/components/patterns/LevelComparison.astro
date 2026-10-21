@@ -1,0 +1,50 @@
+---
+/**
+ * LevelComparison — CD §C2.10 "Tre livelli a confronto". Single DOM (N13): three cards,
+ * each a <dl>; desktop aligns the rows with CSS subgrid and highlights Affiancamento;
+ * mobile stacks the same cards. No <table>, no hidden duplicate.
+ */
+const ROWS = ['In sintesi', 'Il nostro ruolo', 'Indicato quando'] as const;
+const LEVELS = [
+  {
+    title: 'Consulenza mirata',
+    values: [
+      'Interventi specifici per analizzare un problema, individuare soluzioni, definire strategie',
+      'Analizziamo e definiamo la strategia con te',
+      "Hai un'esigenza specifica e circoscritta",
+    ],
+  },
+  {
+    title: 'Affiancamento continuativo',
+    highlight: true,
+    values: [
+      'Percorso generalmente di 6–12 mesi, anche superiori',
+      'Lavoriamo con te e con la rete, con incontri regolari',
+      'Vuoi costruire un metodo e vederlo applicato',
+    ],
+  },
+  {
+    title: 'Sviluppo commerciale operativo',
+    values: [
+      "Partecipazione diretta all'organizzazione, alla gestione e allo sviluppo commerciale",
+      "Interveniamo direttamente nello sviluppo e nel coordinamento dell'attività commerciale",
+      'Vuoi un coinvolgimento diretto nella gestione commerciale',
+    ],
+  },
+] as const;
+---
+<div class="compare">
+  {LEVELS.map((level) => (
+    <article class:list={['compare__card', { 'compare__card--highlight': 'highlight' in level }]}>
+      <h3 class="compare__title">{level.title}</h3>
+      <dl class="compare__rows">
+        {ROWS.map((row, i) => (
+          <div class="compare__row">
+            <dt>{row}</dt>
+            <dd>{level.values[i]}</dd>
+          </div>
+        ))}
+      </dl>
+    </article>
+  ))}
+</div>

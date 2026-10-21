@@ -1,0 +1,144 @@
+---
+/**
+ * ContactForm — the only form on the site, on /contatti/ (D21). ARCHITECTURE §5; CD §E verbatim.
+ *
+ * - No provider is connected (N2 deferred). Submission goes through src/lib/form/adapter.ts
+ *   (mock adapters only, non-production). See that file for the dev failure flag.
+ * - Privacy link opens in the SAME tab (N10). Checkbox not pre-ticked.
+ * - Honeypot: off-screen wrapper with aria-hidden="true" on the wrapper; input tabindex -1,
+ *   autocomplete off; label "Lascia vuoto questo campo".
+ * - The ?interesse= value is never written into the page: client JS checks one fixed radio.
+ * - The privacy label wording is PRE-LAUNCH (R17): the CD label renders unchanged.
+ */
+import { INTERESSE } from '../../lib/form/interesse.ts';
+import { CTA_LABEL } from '../../content/site.ts';
+import PhoneLink from '../ui/PhoneLink.astro';
+import EmailLink from '../ui/EmailLink.astro';
+import { isVisible } from '../../lib/fact-view.ts';
+import { facts } from '../../content/facts.ts';
+import { currentSiteEnv } from '../../lib/site-env.ts';
+
+const showEmail = isVisible(facts.email, currentSiteEnv());
+
+const situazione = ['Ha già una rete commerciale', 'Vuole costruirla', 'Altro'] as const;
+const interesse = [
+  { id: INTERESSE.affiancamento.radioId, label: INTERESSE.affiancamento.label },
+  { id: INTERESSE.consulenza.radioId, label: INTERESSE.consulenza.label },
+  { id: INTERESSE.operativo.radioId, label: INTERESSE.operativo.label },
+  { id: INTERESSE.formazione.radioId, label: INTERESSE.formazione.label },
+  { id: 'interesse-non-so', label: 'Non so ancora' },
+] as const;
+const orario = ['Mattina', 'Pomeriggio'] as const;
+---
+<form class="contact-form" method="post" data-contact-form aria-labelledby="form-title">
+  <div class="form-summary" tabindex="-1" data-summary hidden>
+    <p class="form-summary__title">Controlla i campi evidenziati.</p>
+    <ul class="form-summary__list" data-summary-list></ul>
+  </div>
+
+  <p class="form-legend">I campi con * sono obbligatori.</p>
+
+  <div class="field" data-field="nome">
+    <label for="f-nome">Nome e cognome *</label>
+    <input id="f-nome" name="nome" type="text" autocomplete="name" required aria-describedby="f-nome-error" />
+    <p class="field__error" id="f-nome-error" data-error hidden></p>
+  </div>
+
+  <div class="field" data-field="azienda">
+    <label for="f-azienda">Azienda *</label>
+    <input id="f-azienda" name="azienda" type="text" autocomplete="organization" required aria-describedby="f-azienda-error" />
+    <p class="field__error" id="f-azienda-error" data-error hidden></p>
+  </div>
+
+  <div class="field" data-field="ruolo">
+    <label for="f-ruolo">Ruolo *</label>
+    <input id="f-ruolo" name="ruolo" type="text" autocomplete="organization-title" placeholder="Es. titolare, direttore commerciale" required aria-describedby="f-ruolo-error" />
+    <p class="field__error" id="f-ruolo-error" data-error hidden></p>
+  </div>
+
+  <div class="field-row">
+    <div class="field" data-field="telefono">
+      <label for="f-telefono">Telefono *</label>
+      <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="f-telefono-help f-telefono-error" />
+      <p class="field__help" id="f-telefono-help">Ti chiameremo a questo numero.</p>
+      <p class="field__error" id="f-telefono-error" data-error hidden></p>
+    </div>
+
+    <div class="field" data-field="email">
+      <label for="f-email">Email *</label>
+      <input id="f-email" name="email" type="email" autocomplete="email" placeholder="nome@azienda.it" required aria-describedby="f-email-error" />
+      <p class="field__error" id="f-email-error" data-error hidden></p>
+    </div>
+  </div>
+
+  <fieldset class="choice">
+    <legend>La situazione della tua azienda (facoltativo)</legend>
+    <div class="choice__options">
+      {situazione.map((s, i) => (
+        <label class="choice__option" for={`situazione-${i}`}>
+          <input type="radio" id={`situazione-${i}`} name="situazione" value={s} />
+          <span>{s}</span>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+
+  <fieldset class="choice" aria-describedby="interesse-help">
+    <legend>Interesse (facoltativo)</legend>
+    <div class="choice__options">
+      {interesse.map((o) => (
+        <label class="choice__option" for={o.id}>
+          <input type="radio" id={o.id} name="interesse" value={o.label} />
+          <span>{o.label}</span>
+        </label>
+      ))}
+    </div>
+    <p class="field__help" id="interesse-help">Non sei sicuro? Scegli "Non so ancora": ne parliamo durante la telefonata.</p>
+  </fieldset>
+
+  <fieldset class="choice">
+    <legend>Quando preferisci ricevere la chiamata? (facoltativo)</legend>
+    <div class="choice__options choice__options--inline">
+      {orario.map((o) => (
+        <label class="choice__option" for={`orario-${o.toLowerCase()}`}>
+          <input type="radio" id={`orario-${o.toLowerCase()}`} name="orario" value={o} />
+          <span>{o}</span>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+
+  <div class="field">
+    <label for="f-messaggio">Messaggio (facoltativo)</label>
+    <textarea id="f-messaggio" name="messaggio" rows="5" placeholder="In poche righe: com'è organizzata oggi la vendita e cosa vorresti migliorare."></textarea>
+  </div>
+
+  <div class="field field--check" data-field="privacy">
+    <div class="check">
+      <input id="f-privacy" name="privacy" type="checkbox" value="si" required aria-describedby="f-privacy-error" />
+      <label for="f-privacy">Ho letto l'<a href="/privacy-policy/">informativa sulla privacy</a>. *</label>
+    </div>
+    <p class="field__error" id="f-privacy-error" data-error hidden></p>
+  </div>
+
+  <input type="hidden" name="origine" value="diretto" data-origine />
+
+  <div class="hp" aria-hidden="true">
+    <label for="f-hp">Lascia vuoto questo campo</label>
+    <input id="f-hp" name="sito_web" type="text" tabindex="-1" autocomplete="off" data-honeypot />
+  </div>
+
+  <div class="form-submit">
+    <button type="submit" class="btn btn--primary btn--large" data-submit>{CTA_LABEL}</button>
+    <p class="form-status" role="status" aria-live="polite" data-status></p>
+  </div>
+
+  <div class="form-alert" role="alert" data-alert></div>
+  <template data-failure-template>
+    <p>Non siamo riusciti a inviare la richiesta. Riprova tra qualche minuto, oppure chiamaci al <PhoneLink placement="form-failure" />{showEmail && <> o scrivi a <EmailLink placement="form-failure" show="address" /></>}.</p>
+  </template>
+</form>
+
+<script>
+  import '../../client/contact-form.ts';
+</script>

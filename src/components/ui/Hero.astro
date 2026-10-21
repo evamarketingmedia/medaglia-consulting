@@ -1,0 +1,58 @@
+---
+/**
+ * Hero — the only H1 emitter (ARCH §4). CTA rule (CD §A): Home and the five service pages
+ * get [Richiedi un confronto] + [Chiama] (mobile only); Chi siamo, Contatti, Grazie and 404
+ * pass `cta={false}`.
+ *
+ * Optional:
+ *  - slot "title": rich H1 content (Home: two lines with a highlighted second line). It is
+ *    still ONE <h1>, read as a single heading. Otherwise the `title` prop is used.
+ *  - slot "media": a portrait column (copy left, photo right on desktop; photo after the
+ *    actions on mobile, so H1 and CTAs stay near the top).
+ *  - `secondary`: a quiet second action (e.g. an in-page anchor).
+ */
+import Cta from './Cta.astro';
+import PhoneLink from './PhoneLink.astro';
+import Breadcrumbs from '../layout/Breadcrumbs.astro';
+import type { InteresseKey } from '../../lib/form/interesse.ts';
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  cta?: boolean;
+  interesse?: InteresseKey | undefined;
+  breadcrumb?: { label: string; path: string } | undefined;
+  /** Larger display treatment (Home). */
+  feature?: boolean;
+  secondary?: { label: string; href: string } | undefined;
+}
+const { eyebrow, title, cta = false, interesse, breadcrumb, feature = false, secondary } = Astro.props;
+const hasMedia = Astro.slots.has('media');
+const hasTitleSlot = Astro.slots.has('title');
+if (!hasTitleSlot && (title === undefined || title.trim() === '')) throw new Error('Hero: a title is required');
+---
+<section class:list={['hero on-dark', { 'hero--feature': feature, 'hero--split': hasMedia }]} aria-labelledby="page-title">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      {breadcrumb && <Breadcrumbs label={breadcrumb.label} path={breadcrumb.path} />}
+      {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
+      <h1 id="page-title" class="hero__title">{hasTitleSlot ? <slot name="title" /> : title}</h1>
+      <div class="hero__body">
+        <slot />
+      </div>
+      {(cta || secondary) && (
+        <div class="hero__actions">
+          {cta && <Cta interesse={interesse} placement="hero" variant="signal" />}
+          {cta && <PhoneLink variant="chiama" placement="hero" class="only-mobile btn--on-dark" />}
+          {secondary && <a class="btn btn--ghost" href={secondary.href} data-placement="hero-secondary">{secondary.label}</a>}
+        </div>
+      )}
+      <slot name="after" />
+    </div>
+    {hasMedia && (
+      <div class="hero__media">
+        <slot name="media" />
+      </div>
+    )}
+  </div>
+</section>

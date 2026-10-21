@@ -1,0 +1,21 @@
+---
+/**
+ * EmailLink — `mailto:` from facts.email (R5), link label "Scrivici" (CD §A, §B).
+ * While missing: preview marker in non-production, nothing in production. Never a dead mailto:.
+ */
+import { facts } from '../../content/facts.ts';
+import { EMAIL_LABEL } from '../../content/site.ts';
+import { viewFact } from '../../lib/fact-view.ts';
+import { currentSiteEnv } from '../../lib/site-env.ts';
+import PreviewMarker from './PreviewMarker.astro';
+
+interface Props {
+  placement: string;
+  /** 'label': "Scrivici"; 'address': the address as text. */
+  show?: 'label' | 'address';
+}
+const { placement, show = 'label' } = Astro.props;
+const view = viewFact(facts.email, currentSiteEnv());
+---
+{view.kind === 'value' && <a href={`mailto:${view.value}`} data-placement={placement}>{show === 'label' ? EMAIL_LABEL : view.value}</a>}
+{view.kind === 'marker' && <PreviewMarker labels={view.labels} />}

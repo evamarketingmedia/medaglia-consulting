@@ -282,12 +282,26 @@ describe('registry items with slots', () => {
   });
 });
 
-describe('facts (foundation) stay unresolved, except the verified phone (R1)', () => {
-  it('every fact slot except phone is missing, with COPY-DRAFT labels verbatim', () => {
+describe('facts (foundation) stay unresolved, except the verified phone (R1), photo (R14), logo (U1) and email (R5)', () => {
+  it('every fact slot except phone, photo, logo and email is missing, with COPY-DRAFT labels verbatim', () => {
     for (const [key, s] of Object.entries(facts)) {
-      if (key !== 'phone') expect(s.state, key).toBe('missing');
+      if (!['phone', 'photo', 'logo', 'email', 'hours'].includes(key)) expect(s.state, key).toBe('missing');
     }
-    expect(facts.photo).toEqual({ state: 'missing', labels: ['[MISSING: foto professionale di Alberto Medaglia]'] });
+  });
+  it('hours (R3) are intentionally not published (D32): omitted with a reason, resolved', () => {
+    expect(facts.hours).toEqual({ state: 'omitted', reason: 'Scelta del cliente: orari non pubblicati (D32, 2026-10-20)' });
+  });
+  it('photo (R14) and logo (U1) reference the approved files (provided/verified by agency owner, 2026-10-19)', () => {
+    expect(facts.photo).toEqual({
+      state: 'value',
+      value: { src: '/images/alberto-medaglia.png', alt: 'Alberto Medaglia', width: 1385, height: 1136 },
+    });
+    expect(facts.logo).toEqual({
+      state: 'value',
+      value: { src: '/brand/medaglia-consulting.svg', alt: 'Medaglia Consulting', width: 2048, height: 682 },
+    });
+    expect(checkSlot(facts.photo, false)).toEqual({ ok: true, resolved: true });
+    expect(checkSlot(facts.logo, false)).toEqual({ ok: true, resolved: true });
   });
   it('phone (R1) holds the verified value exactly as provided (verified by agency owner, 2026-10-19)', () => {
     expect(facts.phone).toEqual({ state: 'value', value: '0039 334 1201847' });

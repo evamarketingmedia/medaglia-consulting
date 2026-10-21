@@ -1,0 +1,16 @@
+---
+/**
+ * Mobile sticky bar (<768 px only) — CD §B; ARCHITECTURE §4, §9, §12.
+ * Accessible names start with the visible label (WCAG 2.5.3). Space is reserved at the
+ * bottom of the page and via scroll-padding so it never covers focused controls; it is
+ * hidden while a contact-form field has focus (keyboard open).
+ * N9: the header CTA is the quiet outline variant on mobile; this bar carries the filled one.
+ */
+import { STICKY_CALL_ARIA, STICKY_CTA_ARIA } from '../../content/site.ts';
+import Cta from '../ui/Cta.astro';
+import PhoneLink from '../ui/PhoneLink.astro';
+---
+<div class="sticky-bar" data-sticky-bar>
+  <PhoneLink variant="chiama" placement="sticky-bar" ariaLabel={STICKY_CALL_ARIA} class="sticky-bar__call" />
+  <Cta placement="sticky-bar" variant="primary" ariaLabel={STICKY_CTA_ARIA} class="sticky-bar__cta" />
+</div>

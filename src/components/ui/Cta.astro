@@ -1,0 +1,18 @@
+---
+/**
+ * Cta — the one primary action "Richiedi un confronto" (CD §A). Builds /contatti/ or
+ * /contatti/?interesse=<value> with ONLY the four CD §E values (typed + checked).
+ */
+import { CTA_LABEL } from '../../content/site.ts';
+import { contattiHref, type InteresseKey } from '../../lib/form/interesse.ts';
+
+interface Props {
+  interesse?: InteresseKey | undefined;
+  placement: string;
+  variant?: 'primary' | 'signal' | 'quiet';
+  class?: string;
+  ariaLabel?: string;
+}
+const { interesse, placement, variant = 'primary', class: className, ariaLabel } = Astro.props;
+---
+<a class:list={['btn', `btn--${variant}`, className]} href={contattiHref(interesse)} data-placement={placement} aria-label={ariaLabel}>{CTA_LABEL}</a>

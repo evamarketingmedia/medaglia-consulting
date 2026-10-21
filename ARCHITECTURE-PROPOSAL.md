@@ -770,4 +770,11 @@ Final release classifications (2026-10-19) are applied in: header; §4 (Header, 
 
 Final clarifications FRC-2 (2026-10-19) are applied in: header (Sources, Precedence); §11.1 (integrity failures, precedence); §11.2; §11.3 (Q1, Q2); §11.4 (REQUIRED count 15, R2 + R15 merged, R13, R14, Q1–Q3 resolved); §11.5; §14 (step 9); §15 (Vitest); §16; §17; §18; §19; §20.
 
+## Amendments (2026-10-20)
+
+Recorded only; the proposal above is not rewritten.
+- **R3 (contact hours):** now omittable (D32, client decision: hours intentionally not published). `facts.hours` is an omitted-with-reason slot and the registry marks R3 `omitAllowed: true`, so it is no longer a production FAIL.
+- **Logo:** `Logo.astro` renders the approved final asset `public/brand/medaglia-consulting.svg` as-is (U1 provided/verified), in header and footer.
+- **D34:** `CtaBlock` accepts an optional `title` (default CLOSING_HEADLINE), used only on Affiancamento. `LevelComparison` and `ExperienceBlock` are kept in the codebase; `LevelComparison` is currently unused.
+
 END OF DOCUMENT

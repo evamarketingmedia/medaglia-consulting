@@ -1,0 +1,24 @@
+---
+/**
+ * Logo — the APPROVED final brand asset (U1), provided/verified by the agency owner,
+ * 2026-10-19: public/brand/medaglia-consulting.svg (viewBox 0 0 2048 682), used AS-IS
+ * (never modified, re-encoded, recoloured or recreated). Header and Footer use this.
+ * The logo colours are navy #082A49 and steel #456783, so on navy ('dark') it sits in a
+ * light container (see .logo--dark); no white variant exists or is created.
+ */
+interface Props {
+  /** 'light' = on a light background (header); 'dark' = on navy (footer). */
+  tone?: 'light' | 'dark';
+}
+const { tone = 'light' } = Astro.props;
+---
+<span class:list={['logo', `logo--${tone}`]}>
+  <img
+    class="logo__img"
+    src="/brand/medaglia-consulting.svg"
+    alt="Medaglia Consulting"
+    width="2048"
+    height="682"
+    decoding="async"
+  />
+</span>

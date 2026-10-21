@@ -134,20 +134,37 @@ describe('production vs non-production', () => {
     expect(run(reg([important]), 'non-production', leak).exitCode).toBe(0);
   });
 
-  it('the real (foundation) registry fails production and passes non-production', () => {
+  it('the real (complete) registry fails production and passes non-production', () => {
+    expect(registry.complete).toBe(true);
     const prod = runReleaseCheck({ mode: 'production', registry, output: dist() });
     expect(prod.exitCode).toBe(1);
     expect(prod.errors).toEqual([]);
     const nonProd = runReleaseCheck({ mode: 'non-production', registry, output: null });
     expect(nonProd.exitCode).toBe(0);
-    expect(nonProd.findings.map((f) => f.id)).toEqual(['R6', 'R7', 'R19', 'I1', 'R14', 'U5']);
+    // Every item is unresolved except R1 (phone), U1 (logo), R14 (photo) (verified 2026-10-19)
+    // and R5 (public email, verified 2026-10-20); R3 (hours) is omitted on purpose (D32).
+    expect(nonProd.findings.map((f) => f.id)).toEqual(
+      registry.items.map((i) => i.id).filter((id) => !['R1', 'R3', 'R5', 'U1', 'R14'].includes(id)),
+    );
+    // The FAIL findings are exactly the unresolved REQUIRED contract items.
+    expect(nonProd.findings.filter((f) => f.outcome === 'FAIL').map((f) => f.id)).toEqual(
+      Object.keys(REQUIRED_CONTRACT).filter((id) => id !== 'R1' && id !== 'R3' && id !== 'R5'),
+    );
   });
 
-  it('the real registry fails production on EACH unresolved REQUIRED item by name (R6, R7, R19)', () => {
+  it('the real registry fails production on EACH unresolved REQUIRED item by name', () => {
     const prod = runReleaseCheck({ mode: 'production', registry, output: dist() });
-    for (const id of ['R6', 'R7', 'R19']) {
+    for (const id of Object.keys(REQUIRED_CONTRACT).filter((k) => k !== 'R1' && k !== 'R3' && k !== 'R5')) {
       expect(prod.failures.some((f) => f.startsWith(`REQUIRED item unresolved: ${id} `))).toBe(true);
     }
+  });
+
+  it('the real registry R3 (hours) is omitted on purpose (D32) and is not a production failure', () => {
+    const r3 = registry.items.find((i) => i.id === 'R3');
+    expect(r3?.slot).toEqual({ state: 'omitted', reason: 'Scelta del cliente: orari non pubblicati (D32, 2026-10-20)' });
+    expect(evaluateItem(r3, 0).kind).toBe('resolved');
+    const prod = runReleaseCheck({ mode: 'production', registry, output: dist() });
+    expect(prod.failures.some((f) => f.includes('R3'))).toBe(false);
   });
 
   it('the real registry R1 (phone) is resolved and is no longer a production failure', () => {
@@ -201,11 +218,11 @@ describe('never a silent pass', () => {
 });
 
 describe('REQUIRED contract (S2)', () => {
-  it('is frozen and matches §11.4.1 (15 IDs; only R7 and R12 omit-allowed)', () => {
+  it('is frozen and matches §11.4.1 (15 IDs; only R3, R7 and R12 omit-allowed)', () => {
     expect(Object.isFrozen(REQUIRED_CONTRACT)).toBe(true);
     expect(Object.isFrozen(REQUIRED_CONTRACT['R1'])).toBe(true);
     expect(Object.keys(REQUIRED_CONTRACT)).toEqual(['R1', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10', 'R11', 'R12', 'R16', 'R17', 'R18', 'R19']);
-    expect(Object.entries(REQUIRED_CONTRACT).filter(([, c]) => c.omitAllowed).map(([id]) => id)).toEqual(['R7', 'R12']);
+    expect(Object.entries(REQUIRED_CONTRACT).filter(([, c]) => c.omitAllowed).map(([id]) => id)).toEqual(['R3', 'R7', 'R12']);
     expect(() => {
       (REQUIRED_CONTRACT as Record<string, unknown>)['R99'] = { tier: 'required', omitAllowed: true };
     }).toThrow();
@@ -243,10 +260,15 @@ describe('REQUIRED contract (S2)', () => {
   });
 
   it('non-production lists contract violations but exits 0', () => {
-    const r = runReleaseCheck({ mode: 'non-production', registry, output: null });
+    const items = contractItems.filter((i) => i.id !== 'R3' && i.id !== 'R4');
+    const r = runReleaseCheck({ mode: 'non-production', registry: { complete: false, items }, output: null });
     expect(r.exitCode).toBe(0);
-    expect(r.contractViolations).toHaveLength(11);
+    expect(r.contractViolations).toHaveLength(2);
     expect(r.contractViolations[0]).toBe('R3: absent from the registry (REQUIRED, §11.4.1)');
+  });
+
+  it('the real registry satisfies the §11.4.1 contract (no violations)', () => {
+    expect(runReleaseCheck({ mode: 'non-production', registry, output: null }).contractViolations).toEqual([]);
   });
 });
 

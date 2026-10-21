@@ -1,18 +1,94 @@
 ---
 /**
- * DEVELOPMENT PAGE — Phase 3B foundation check. NOT approved copy, NOT the Home page.
- * Replaced by the real Home page in build step 3. Always noindex, nofollow, no canonical.
+ * Home (/) — Phase 3 client-feedback redesign (SCOPE CHANGE vs CD §C1: new H1, cut copy).
+ * D34 simplification: hero (H1 + portrait) · situations · "Come lavoriamo" (#come-lavoriamo)
+ * · three levels (+ secondary "Altri ambiti di intervento" links to Reti and Formazione)
+ * · Alberto / experience · closing CTA. The value strip and the
+ * "Metodo, persone e risultati concreti" section were removed (concepts already carried by
+ * the hero copy and the four method steps).
+ * <title>, meta description and robots are unchanged (ROUTES.home).
+ * The SEO meaning of the old H1 ("reti commerciali … PMI B2B e industriali … Nord Italia")
+ * now lives in the eyebrow and the hero copy.
+ * Review flag R18 (Home H1 / goal sentence) is untouched in the registry: no marker renders.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import CtaBlock from '../components/ui/CtaBlock.astro';
+import ContextLink from '../components/ui/ContextLink.astro';
+import Portrait from '../components/ui/Portrait.astro';
+import ThreeLevels from '../components/patterns/ThreeLevels.astro';
+import MethodSteps from '../components/patterns/MethodSteps.astro';
+import { ROUTES } from '../content/site.ts';
+
+const route = ROUTES.home;
 ---
-<BaseLayout
-  title="Foundation check — non-production"
-  description="Pagina tecnica di verifica della base del progetto. Non è contenuto approvato."
-  robots="noindex, nofollow"
->
-  <div class="container flow">
-    <h1>Foundation check — non-production</h1>
-    <p>Pagina tecnica di test: non è testo approvato e non è la pagina definitiva.</p>
-    <p lang="en">Technical test page for the Phase 3B foundation. Not approved copy.</p>
-  </div>
+<BaseLayout title={route.title} description={route.description} robots={route.robots} path={route.path} pageKey="home">
+  <Hero
+    feature
+    cta
+    eyebrow="Reti commerciali per PMI B2B e industriali del Nord Italia"
+    secondary={{ label: 'Scopri come lavoriamo', href: '#come-lavoriamo' }}
+  >
+    <Fragment slot="title">È meglio pagare zero per avere 1 <span class="hero__accent">o meglio pagare 1 per avere 4?</span></Fragment>
+    <p>Investire tempo, metodo e attenzione nelle persone e nell'organizzazione commerciale crea più leva che cercare risultati senza farle crescere. Per questo affianchiamo l'imprenditore nel creare, organizzare e sviluppare la rete vendita.</p>
+    <Portrait slot="media" class="hero__portrait" eager focus="28% 22%" sizes="(min-width: 1024px) 42vw, 100vw" />
+  </Hero>
+
+  <section class="section" aria-labelledby="situazioni">
+    <div class="container stack">
+      <h2 id="situazioni" class="stack__heading">Le situazioni su cui interveniamo</h2>
+      <ul class="issues">
+        <li>Non c'è una struttura commerciale organizzata.</li>
+        <li>Manca un metodo condiviso e replicabile.</li>
+        <li>I commerciali non raggiungono i risultati attesi.</li>
+        <li>Lo sviluppo commerciale dipende troppo dall'imprenditore.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--steel on-dark" aria-labelledby="come-lavoriamo">
+    <div class="container stack">
+      <h2 id="come-lavoriamo" class="stack__heading">Come lavoriamo</h2>
+      <MethodSteps
+        feature
+        steps={[
+          { title: 'Analisi', text: 'Capiamo cosa è stato fatto, cosa funziona e dove si perdono opportunità.' },
+          { title: 'Strategia', text: 'Scegliamo le priorità e la soluzione più semplice che può funzionare.' },
+          { title: 'Metodo', text: 'La traduciamo in attività, responsabilità e obiettivi chiari e replicabili.' },
+          { title: 'Applicazione', text: 'La mettiamo in pratica con le persone, la verifichiamo e la correggiamo.' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="modi">
+    <div class="container stack">
+      <h2 id="modi" class="stack__heading">Tre modi di collaborare</h2>
+      <ThreeLevels />
+      <nav class="more-links" aria-labelledby="altri-ambiti">
+        <p id="altri-ambiti" class="more-links__label">Altri ambiti di intervento</p>
+        <a class="context-link" href={ROUTES.reti.path}>Reti commerciali <span class="more-links__arrow" aria-hidden="true">→</span></a>
+        <a class="context-link" href={ROUTES.formazione.path}>Formazione commerciale <span class="more-links__arrow" aria-hidden="true">→</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="esperienza">
+    <div class="container person">
+      <div class="person__text">
+        <h2 id="esperienza" class="person__heading">L'esperienza dietro Medaglia Consulting</h2>
+        <p class="lead">Dall'esperienza diretta di Alberto Medaglia nasce il metodo, dal metodo l'applicazione in azienda.</p>
+        <ul class="person__list">
+          <li>Vendita diretta B2B</li>
+          <li>Creazione e gestione di reti commerciali</li>
+          <li>Analisi organizzativa ed economica dell'impresa</li>
+          <li>Sviluppo commerciale in ambito industriale</li>
+        </ul>
+        <ContextLink to="percorso" />
+      </div>
+      <Portrait class="person__portrait" focus="22% 18%" sizes="(min-width: 1024px) 34vw, 100vw" />
+    </div>
+  </section>
+
+  <CtaBlock />
 </BaseLayout>

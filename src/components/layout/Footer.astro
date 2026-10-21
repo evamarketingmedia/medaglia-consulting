@@ -1,0 +1,76 @@
+---
+/**
+ * Footer — CD §B; ARCHITECTURE §4, D25. Simplified 2026-10-20.
+ * Logo + positioning line, contacts (phone, email), legal data, legal links, ©.
+ * Legal/company data (R6, R7, R12) renders ONLY when its fact has a value: no preview
+ * markers in the footer in any build; the facts stay tracked in facts.ts / the registry.
+ * Contact hours (R3) are intentionally not published (D32). LinkedIn omitted (O1).
+ * Cookie policy link only when cookiePolicyRequired === true (R9).
+ */
+import { facts } from '../../content/facts.ts';
+import { FOOTER_POSITIONING, ROUTES, cookiePolicyRequired } from '../../content/site.ts';
+import { viewFact, type FactView } from '../../lib/fact-view.ts';
+import { currentSiteEnv } from '../../lib/site-env.ts';
+import PhoneLink from '../ui/PhoneLink.astro';
+import EmailLink from '../ui/EmailLink.astro';
+import ExternalLink from '../ui/ExternalLink.astro';
+import Logo from '../ui/Logo.astro';
+
+const env = currentSiteEnv();
+/** Value only: a missing/omitted fact renders nothing here, in every build (no preview marker). */
+function valueOf<T>(view: FactView<T>): T | undefined {
+  return view.kind === 'value' ? view.value : undefined;
+}
+const legal = valueOf(viewFact(facts.legal, env));
+const pecRea = valueOf(viewFact(facts.pecRea, env));
+const address = valueOf(viewFact(facts.address, env));
+const year = new Date().getFullYear();
+const showPhone = viewFact(facts.phone, env).kind === 'value';
+const showEmail = viewFact(facts.email, env).kind === 'value';
+const hasLegalData = legal !== undefined || (pecRea !== undefined && (pecRea.pec !== undefined || pecRea.rea !== undefined)) || address !== undefined;
+---
+<footer class="site-footer on-dark">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <p class="site-footer__wordmark"><Logo tone="dark" /></p>
+      <p class="site-footer__positioning">{FOOTER_POSITIONING}</p>
+    </div>
+
+    {(showPhone || showEmail) && (
+      <div class="site-footer__contacts">
+        <h2 class="site-footer__heading">Contatti</h2>
+        <ul class="plain-list">
+          {showPhone && <li>Telefono: <PhoneLink placement="footer" /></li>}
+          {showEmail && <li>Email: <EmailLink placement="footer" show="address" /></li>}
+        </ul>
+      </div>
+    )}
+  </div>
+
+  <div class="container site-footer__legal">
+    {hasLegalData && (
+      <div class="site-footer__legal-data">
+        {legal !== undefined && (
+          <p>{legal.ragioneSociale} · P.IVA {legal.partitaIva} · Sede legale: {legal.sedeLegale}</p>
+        )}
+        {pecRea !== undefined && (pecRea.pec !== undefined || pecRea.rea !== undefined) && (
+          <p>
+            {pecRea.pec !== undefined && <>PEC: {pecRea.pec}</>}
+            {pecRea.pec !== undefined && pecRea.rea !== undefined && ' · '}
+            {pecRea.rea !== undefined && <>REA: {pecRea.rea}</>}
+          </p>
+        )}
+        {address !== undefined && (
+          <p>Indirizzo: {address.text} · <ExternalLink href={address.mapsUrl}>Apri in Google Maps</ExternalLink></p>
+        )}
+      </div>
+    )}
+    <div class="site-footer__bottom">
+      <ul class="site-footer__legal-links plain-list">
+        <li><a href={ROUTES.privacy.path}>Privacy policy</a></li>
+        {cookiePolicyRequired === true && <li><a href="/cookie-policy/">Cookie policy</a></li>}
+      </ul>
+      <p class="site-footer__copy">© {year}{legal !== undefined && <> {legal.ragioneSociale}</>}</p>
+    </div>
+  </div>
+</footer>

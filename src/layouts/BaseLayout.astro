@@ -1,40 +1,48 @@
 ---
 /**
- * BaseLayout — TECHNICAL FOUNDATION ONLY (Phase 3B). ARCHITECTURE §4, §6, §9, N5.
+ * BaseLayout — ARCHITECTURE §4, §6, §9, N5.
  *
- * Provides: <html lang="it">, charset, viewport, title, meta description,
- * robots (required; noindex, nofollow outside production), canonical on indexable pages, skip link,
- * <main id="main">, shared stylesheets (emitted as external files: §10.1).
- *
- * Deliberately NOT here yet (attach points marked below):
- *   SeoHead (OG/Twitter, JSON-LD) — build step 5
- *   Header, nav disclosure, Footer + legal block, StickyBar — build step 2
- *   analytics-init.ts — build step 6 (no provider until N4)
+ * Provides: <html lang="it" data-page>, charset, viewport, title, meta description,
+ * robots (declared policy; noindex, nofollow everywhere outside production), canonical on
+ * indexable pages, OG/Twitter (SP F.6; no og:image while I1 is missing -> card "summary"),
+ * one JSON-LD @graph on indexable pages (WebSite + ProfessionalService + page nodes), skip
+ * link, Header, <main id="main">, Footer, mobile StickyBar, analytics gate (no provider).
+ * Stylesheets and scripts are emitted as external files (§10.1).
  */
 import '../styles/tokens.css';
 import '../styles/reset.css';
 import '../styles/base.css';
 import '../styles/layout.css';
+import '../styles/components.css';
 import { assertPagePolicy, buildCanonical, resolveRobots } from '../lib/seo/meta.ts';
 import type { Robots } from '../lib/seo/meta.ts';
 import type { SiteEnv } from '../lib/env.ts';
+import { canEmitFor, organizationNode, serializeGraph, websiteNode, type JsonObject } from '../lib/seo/jsonld.ts';
+import { facts } from '../content/facts.ts';
+import { BRAND } from '../content/site.ts';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import StickyBar from '../components/layout/StickyBar.astro';
 
 interface Props {
-  /** <title>. Required. Final titles come verbatim from SP via routes.ts (later). */
+  /** <title>. Required. Verbatim from SP via content/site.ts ROUTES. */
   title: string;
-  /** Meta description. Required. Final values verbatim from SP (later). */
+  /** Meta description. Required. Verbatim from SP via ROUTES. */
   description: string;
   /**
    * DECLARED page robots policy (required, S7): 'index, follow' | 'noindex, follow' |
-   * 'noindex, nofollow' (the last only for the development page; D7 deferred).
-   * Non-production always renders "noindex, nofollow" (env-forced, N5).
+   * 'noindex, nofollow'. Non-production always renders "noindex, nofollow" (env-forced, N5).
    */
   robots: Robots;
   /** Route path, e.g. "/contatti/". Required for 'index, follow'; forbidden on noindex pages (§6). */
   path?: string;
+  /** Analytics page key (data-page). */
+  pageKey?: string;
+  /** Page-specific JSON-LD nodes (indexable pages only), built from the canonical origin. */
+  schema?: (base: string) => JsonObject[];
 }
 
-const { title, description, path, robots } = Astro.props;
+const { title, description, path, robots, pageKey = '', schema } = Astro.props;
 
 if (typeof title !== 'string' || title.trim() === '') throw new Error('BaseLayout: `title` must not be empty');
 if (typeof description !== 'string' || description.trim() === '') throw new Error('BaseLayout: `description` must not be empty');
@@ -50,9 +58,20 @@ if (injectedEnv !== 'production' && injectedEnv !== 'non-production') {
 const siteEnv: SiteEnv = injectedEnv;
 const effectiveRobots = resolveRobots(robots, siteEnv);
 const canonical = path === undefined ? undefined : buildCanonical(path, Astro.site);
+
+/**
+ * JSON-LD only on indexable pages, and never for a reserved host (the non-production
+ * `.invalid` default): the serializer refuses such values. To inspect JSON-LD locally,
+ * run with SITE_URL=http://localhost:4321.
+ */
+const base = Astro.site === undefined ? undefined : new URL(Astro.site).origin;
+const jsonLd =
+  robots === 'index, follow' && base !== undefined && canEmitFor(base)
+    ? serializeGraph([websiteNode(base), organizationNode(base, { phone: facts.phone }), ...(schema ? schema(base) : [])])
+    : undefined;
 ---
 <!doctype html>
-<html lang="it">
+<html lang="it" data-page={pageKey === "" ? undefined : pageKey}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -60,16 +79,28 @@ const canonical = path === undefined ? undefined : buildCanonical(path, Astro.si
     <meta name="description" content={description} />
     <meta name="robots" content={effectiveRobots} />
     {canonical && <link rel="canonical" href={canonical} />}
-    {/* ATTACH LATER (step 5): SeoHead — OG/Twitter tags (og:image omitted while I1 is missing, N7) and JSON-LD. */}
+    <link rel="preload" href="/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={BRAND} />
+    <meta property="og:locale" content="it_IT" />
+    {/* og:image omitted while I1 is missing (N7): no fake social image. */}
+    <meta name="twitter:card" content="summary" />
+    {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
     {/* No favicon: none exists until D17 assets are delivered (U1). */}
   </head>
   <body>
     <a class="skip-link" href="#main">Vai al contenuto principale</a>
-    {/* ATTACH LATER (step 2): <Header /> with nav disclosure and header CTA (N9). */}
+    <Header />
     <main id="main" tabindex="-1">
       <slot />
     </main>
-    {/* ATTACH LATER (step 2): <Footer /> with legal block; <StickyBar /> (<768 px). */}
-    {/* ATTACH LATER (step 6): analytics-init.ts — no provider until N4. */}
+    <Footer />
+    <StickyBar />
+    <script>
+      import '../client/analytics-init.ts';
+    </script>
   </body>
 </html>

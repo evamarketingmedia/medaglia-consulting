@@ -1,0 +1,20 @@
+---
+/**
+ * FaqList — visible FAQ (H3 + answer, not collapsed). Uses the same published array as the
+ * FAQPage JSON-LD, so the text is identical (SP E.6). Unpublished items never render.
+ */
+import { publishedFaq, type Faq } from '../../content/faq.ts';
+
+interface Props {
+  items: readonly Faq[];
+}
+const items = publishedFaq(Astro.props.items);
+---
+<div class="faq">
+  {items.map((f) => (
+    <div class="faq__item">
+      <h3 class="faq__q">{f.q}</h3>
+      <p class="faq__a">{f.a}</p>
+    </div>
+  ))}
+</div>

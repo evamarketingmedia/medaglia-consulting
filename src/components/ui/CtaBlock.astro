@@ -1,0 +1,33 @@
+---
+/**
+ * CtaBlock — closing block on every page except Contatti and Grazie (CD §A):
+ * H2 closing headline + discovery-call note + CTA + phone ("Chiama" on mobile,
+ * "Oppure chiama il …" on desktop).
+ * `title` (D34): optional page-specific closing headline; defaults to CLOSING_HEADLINE.
+ * D35: one shared, strong treatment for every page's final CTA (large headline, gold rule,
+ * large gold button), modelled on the Formazione closing block. Text and interesse unchanged.
+ */
+import { CLOSING_HEADLINE, DISCOVERY_NOTE } from '../../content/site.ts';
+import type { InteresseKey } from '../../lib/form/interesse.ts';
+import Cta from './Cta.astro';
+import PhoneLink from './PhoneLink.astro';
+
+interface Props {
+  interesse?: InteresseKey | undefined;
+  title?: string;
+}
+const { interesse, title = CLOSING_HEADLINE } = Astro.props;
+---
+<section class="cta-block on-dark" aria-labelledby="cta-block-title">
+  <div class="container cta-block__inner">
+    <h2 id="cta-block-title" class="cta-block__title">{title}</h2>
+    <div class="cta-block__side">
+      <p class="cta-block__note">{DISCOVERY_NOTE}</p>
+      <div class="cta-block__actions">
+        <Cta interesse={interesse} placement="cta-block" variant="signal" class="btn--large" />
+        <PhoneLink variant="chiama" placement="cta-block" class="only-mobile btn--on-dark" />
+      </div>
+      <PhoneLink variant="oppure" placement="cta-block" class="only-desktop" />
+    </div>
+  </div>
+</section>

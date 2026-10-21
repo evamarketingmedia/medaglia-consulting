@@ -741,4 +741,11 @@ Reason: B2B links are often shared on LinkedIn and email, and LinkedIn reads OG 
 
 **File read (original SEO draft):** /Users/evastoppa/Downloads/MEDAGLIACONSULTING/BLUEPRINT-APPROVED.md. The project folder now contains BLUEPRINT-APPROVED.md, COPY-DRAFT.md and SEO-PLAN.md.
 
+## Amendments (2026-10-20)
+
+Recorded only; the plan above is not rewritten. Titles, metas, canonicals, robots, sitemap, JSON-LD and FAQPage content are unchanged.
+- **Home H1/headings (§C.1):** the H1 is now "È meglio pagare zero per avere 1 / o meglio pagare 1 per avere 4?" ([REVIEW WITH CLIENT], R18 open); the C.1 term requirement ("reti commerciali", "PMI", "Nord Italia") is met by the eyebrow and hero sentence directly beneath it, not by the H1. After D34 the Home H2s are: Le situazioni su cui interveniamo · Come lavoriamo · Tre modi di collaborare · L'esperienza dietro Medaglia Consulting · closing CTA. The specialism, external-perspective, training, "con chi lavoriamo" and "Metodo, persone e risultati concreti" H2s are no longer on Home (reti and formazione stay linked from "Tre modi di collaborare").
+- **Affiancamento H2s (§C.2) after D34 (order corrected by CL-27, 2026-10-21):** Quando serve un affiancamento continuativo · Cosa facciamo · Come funziona · L'obiettivo: un metodo che non dipenda da una sola persona. · Domande frequenti · Altri modi di collaborare · Parliamo della tua struttura commerciale. (final CTA, last). Removed H2 topics: cos'è / perché continuativo / adattato all'impresa (merged into "Cosa facciamo"), cosa resta all'azienda (replaced), esperienza alle spalle, confronto tra i tre livelli, quando serve un coinvolgimento operativo.
+- **Internal links (§D) changed by D34:** #13 (/affiancamento-commerciale/ → /chi-siamo/, Esperienza block) **removed** with the block; /chi-siamo/ stays reachable from the header and footer. #11 (→ /consulenza-commerciale/) and #12 (→ /sviluppo-commerciale-operativo/) are **moved** to the new "Altri modi di collaborare" cross-link block; #9 and #10 stay in "Cosa facciamo". No other link is removed.
+
 END OF DOCUMENT

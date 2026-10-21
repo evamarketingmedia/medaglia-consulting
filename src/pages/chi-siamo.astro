@@ -1,0 +1,125 @@
+---
+/**
+ * Chi siamo — CD §C7 + §D (fallback version); SP C.7. Phase 3 redesign: personal page with
+ * Alberto's real portrait in the hero; "Il suo modo di lavorare" paraphrases his principles
+ * (third person, never quoted). SCOPE CHANGE vs CD wording: see the Phase 3 report.
+ * - Approved order kept: approach first, then Alberto Medaglia (CL-9).
+ * - Alberto: name only, no title (I2). Portrait: src/content/portrait.ts (real client photo).
+ *   The registry slot facts.photo (R14) is resolved in src/content/facts.ts (agency owner,
+ *   2026-10-19), so Person.image is emitted from it.
+ * - Capabilities: show_company:false (no company names), no figures. Second profile: never
+ *   rendered (O2).
+ * - CL-27: principle "Nessuna promessa di risultati garantiti" replaced by "Misurare per migliorare".
+ * - D35: approach as a statement + four pillars; "Il suo modo di lavorare" as six short
+ *   principles (paraphrases, never quoted); capabilities as four concise ordered blocks (capability gained +
+ *   how it serves companies; detailed activities kept in capabilities.ts, not rendered);
+ *   "Misurabilità" merged into "Misurare per migliorare".
+ * - D36: the Home question no longer appears here. The navy band explains the principle
+ *   ("Creare leva, non dipendenza.", new copy, REVIEW WITH CLIENT); Home asks the question.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import CtaBlock from '../components/ui/CtaBlock.astro';
+import Portrait from '../components/ui/Portrait.astro';
+import CapabilityCard from '../components/patterns/CapabilityCard.astro';
+import { ROUTES } from '../content/site.ts';
+import { CAPABILITIES } from '../content/capabilities.ts';
+import { facts } from '../content/facts.ts';
+import { breadcrumbNode, personNode } from '../lib/seo/jsonld.ts';
+
+const route = ROUTES.chiSiamo;
+const schema = (base: string) => [
+  personNode(base, { photo: facts.photo, title: facts.albertoTitle }),
+  breadcrumbNode(base, route.path, route.breadcrumb),
+];
+const pillars = ['Competenze manageriali', 'Conoscenza diretta delle vendite', 'Analisi aziendale', 'Implementazione operativa'] as const;
+const ways = [
+  ['Un metodo replicabile', 'Semplice, replicabile e scalabile: non dipende da una sola persona.'],
+  ['Grandi obiettivi, micro-obiettivi', 'Un obiettivo ambizioso diventa una serie di passi concreti.'],
+  ['Ogni persona è diversa', 'Guida, responsabilità e supporto cambiano in base a ciò che serve a ogni collaboratore.'],
+  ['Autonomia e responsabilità', 'Persone che si prendono responsabilità e lavorano in autonomia.'],
+  ['Dal problema al metodo', 'Davanti a un problema cerca la causa e ne ricava un metodo da usare.'],
+  ['Persone che guidano altre persone', 'Guidare significa anche far crescere chi potrà, a sua volta, guidare altri.'],
+] as const;
+const principles = [
+  ['Concretezza', 'lavoriamo sulle attività reali dell\'azienda, non su documenti teorici.'],
+  ['Con il team interno', 'costruiamo il metodo insieme a imprenditore, responsabili e commerciali.'],
+  ['Partendo dalle tue necessità', 'ogni intervento è costruito sulle reali necessità dell\'impresa.'],
+  ['Misurare per migliorare', 'obiettivi e indicatori definiti insieme permettono di capire cosa funziona e dove intervenire.'],
+] as const;
+---
+<BaseLayout title={route.title} description={route.description} robots={route.robots} path={route.path} pageKey="chi-siamo" schema={schema}>
+  <Hero breadcrumb={{ label: route.breadcrumb, path: route.path }} title="Chi siamo: competenze manageriali ed esperienza diretta nelle vendite">
+    <p>Medaglia Consulting è specializzata nella creazione, organizzazione e sviluppo delle reti commerciali delle piccole e medie imprese. Dietro il metodo c'è Alberto Medaglia e la sua esperienza diretta nelle vendite.</p>
+    <Portrait slot="media" class="hero__portrait" eager focus="26% 20%" sizes="(min-width: 1024px) 42vw, 100vw" />
+  </Hero>
+
+  <section class="section section--tight" aria-labelledby="approccio">
+    <div class="container stack">
+      <h2 id="approccio" class="stack__heading">Il nostro approccio</h2>
+      <p class="statement statement--display">Affianchiamo l'imprenditore, non ci limitiamo a consigliare.</p>
+      <ul class="pillars">
+        {pillars.map((p) => <li>{p}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="alberto">
+    <div class="container profile">
+      <div class="profile__text">
+        <h2 id="alberto" class="profile__name">Alberto Medaglia</h2>
+        <p class="lead">Laureato in Economia e Management, ha costruito, organizzato e gestito reti commerciali.</p>
+        <p>In una rete di consulenza finanziaria e assicurativa è passato dal ruolo di segnalatore a quello di Senior Manager, coordinando numerosi collaboratori. Oggi affianca imprese di diversi settori nell'organizzazione delle vendite, nella formazione dei commerciali e nello sviluppo di nuove opportunità.</p>
+      </div>
+      <div class="profile__ways">
+        <h3 class="profile__sub">Il suo modo di lavorare</h3>
+        <ul class="ways">
+          {ways.map(([term, text]) => (
+            <li><strong>{term}</strong> {text}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* REVIEW WITH CLIENT (D36) — new copy explaining the principle; no longer the R18 Home
+      statement, which now appears only on Home. Not approved; no registry item added. */}
+  <section class="manifesto on-dark" aria-labelledby="leva">
+    <div class="container manifesto__inner">
+      <h2 id="leva" class="manifesto__heading">Creare leva, non dipendenza.</h2>
+      <p class="manifesto__text">Il punto non è fare tutto da soli, ma costruire persone, metodo e organizzazione capaci di moltiplicare il risultato del proprio lavoro.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="capacita">
+    <div class="container stack">
+      <div class="stack__intro">
+        <h2 id="capacita" class="stack__heading">Quattro capacità complementari</h2>
+        <p class="lead">Esperienze diverse, quattro capacità che oggi mettiamo al servizio delle imprese.</p>
+      </div>
+      <ol class="capabilities">
+        {CAPABILITIES.map((c) => <li><CapabilityCard capability={c} /></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--blue section--tight" aria-labelledby="come-lavoriamo">
+    <div class="container stack">
+      <h2 id="come-lavoriamo" class="stack__heading">Come lavoriamo</h2>
+      <dl class="principles">
+        {principles.map(([term, text]) => (
+          <div class="principles__item"><dt>{term}:</dt><dd>{text}</dd></div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section--compact" aria-labelledby="partner">
+    <div class="container compact">
+      <h2 id="partner" class="compact__heading">Professionisti e imprese partner</h2>
+      <p>Medaglia Consulting si avvale di una rete di professionisti e imprese partner, coinvolti in base alle competenze necessarie a ogni progetto.</p>
+    </div>
+  </section>
+
+  <CtaBlock />
+</BaseLayout>

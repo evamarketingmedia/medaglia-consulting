@@ -1,0 +1,20 @@
+---
+/**
+ * Fact — renders a text slot (ARCHITECTURE §4): the value; or, when missing, the exact
+ * COPY-DRAFT marker as a styled preview marker in NON-production; or nothing (production,
+ * omitted, or no marker). Never invents a value.
+ */
+import type { Slot } from '../../lib/slots.ts';
+import { viewFact } from '../../lib/fact-view.ts';
+import { currentSiteEnv } from '../../lib/site-env.ts';
+import PreviewMarker from './PreviewMarker.astro';
+
+interface Props {
+  fact: Slot<string>;
+  block?: boolean;
+}
+const { fact, block = false } = Astro.props;
+const view = viewFact(fact, currentSiteEnv());
+---
+{view.kind === 'value' && view.value}
+{view.kind === 'marker' && <PreviewMarker labels={view.labels} block={block} />}

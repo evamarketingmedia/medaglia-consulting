@@ -1,0 +1,79 @@
+---
+/** Consulenza commerciale — CD §C3; SP C.3. Phase 3: shorter opening and paragraphs (SCOPE CHANGE vs CD wording); H1/H2s unchanged. D34: hero and closing section shortened (no company-story retelling, no repeated duration). */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import CtaBlock from '../components/ui/CtaBlock.astro';
+import ContextLink from '../components/ui/ContextLink.astro';
+import FaqList from '../components/ui/FaqList.astro';
+import ExperienceBlock from '../components/patterns/ExperienceBlock.astro';
+import { ROUTES } from '../content/site.ts';
+import { FAQ_CONSULENZA, publishedFaq } from '../content/faq.ts';
+import { breadcrumbNode, faqNode, serviceNode } from '../lib/seo/jsonld.ts';
+
+const route = ROUTES.consulenza;
+const schema = (base: string) => [
+  serviceNode(base, 'consulenza'),
+  breadcrumbNode(base, route.path, route.breadcrumb),
+  faqNode(base, route.path, publishedFaq(FAQ_CONSULENZA)),
+];
+---
+<BaseLayout title={route.title} description={route.description} robots={route.robots} path={route.path} pageKey="consulenza" schema={schema}>
+  <Hero
+    cta
+    interesse={route.interesse}
+    breadcrumb={{ label: route.breadcrumb, path: route.path }}
+    eyebrow="Consulenza commerciale"
+    title="Consulenza commerciale per PMI: interventi mirati e supporto alla direzione"
+  >
+    <p>Per analizzare un problema commerciale preciso o confrontarsi regolarmente sulle scelte di vendita e di organizzazione.</p>
+  </Hero>
+
+  <div class="section">
+    <div class="container duo duo--split">
+      <section class="duo__item" aria-labelledby="mirata">
+        <h2 id="mirata" class="duo__heading">Consulenza mirata</h2>
+        <p>Interventi specifici per analizzare un problema, individuare le soluzioni e definire la strategia, partendo da ciò che è già stato fatto e dai risultati raggiunti. Ad esempio:</p>
+        <ul class="ticks">
+          <li>una rete vendita da riorganizzare;</li>
+          <li>un metodo di vendita da definire e condividere;</li>
+          <li>obiettivi commerciali da impostare e monitorare;</li>
+          <li>una strategia per acquisire nuovi clienti.</li>
+        </ul>
+      </section>
+      <section class="duo__item" aria-labelledby="direzionale">
+        <h2 id="direzionale" class="duo__heading">Consulenza direzionale commerciale</h2>
+        <p>Un supporto periodico all'imprenditore che vuole un interlocutore esterno per analizzare i risultati, valutare nuove strategie e migliorare l'organizzazione commerciale.</p>
+      </section>
+    </div>
+  </div>
+
+  <ExperienceBlock
+    id="esperienza"
+    title="L'esperienza dietro la consulenza"
+    items={[
+      { label: "Analisi organizzativa ed economica dell'impresa", text: "organizzazione, criticità commerciali e centri di costo, per aiutare l'imprenditore a decidere le priorità." },
+    ]}
+  />
+
+  <section class="section section--paper" aria-labelledby="quando-basta">
+    <div class="container rail">
+      <h2 id="quando-basta" class="rail__heading">Quando basta una consulenza, e quando serve di più</h2>
+      <div class="rail__body">
+        <p class="lead">La consulenza è adatta quando l'esigenza è circoscritta: un problema da analizzare, una decisione da prendere, una strategia da definire.</p>
+        <p>Per costruire un metodo e vederlo applicato dalla rete servono tempo e continuità: è il caso dell'affiancamento continuativo.</p>
+        <ContextLink to="affiancamento" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq">
+    <div class="container rail">
+      <h2 id="faq" class="rail__heading">Domande frequenti</h2>
+      <div class="rail__body">
+        <FaqList items={FAQ_CONSULENZA} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock interesse={route.interesse} />
+</BaseLayout>

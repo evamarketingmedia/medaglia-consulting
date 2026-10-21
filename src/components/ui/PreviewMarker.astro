@@ -1,0 +1,13 @@
+---
+/**
+ * Preview-only marker for a missing fact (ARCHITECTURE §11.1). Rendered ONLY by Fact /
+ * fact-aware components in non-production; production never reaches this component.
+ */
+interface Props {
+  labels: readonly string[];
+  block?: boolean;
+}
+const { labels, block = false } = Astro.props;
+const Tag = block ? 'p' : 'span';
+---
+<Tag class:list={['preview-marker', { 'preview-marker--block': block }]} data-preview-marker>{labels.join(' · ')}</Tag>

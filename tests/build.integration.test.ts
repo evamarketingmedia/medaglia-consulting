@@ -63,12 +63,38 @@ describe('astro build — production with a FIXTURE domain still fails the relea
     expect(recordOf()).toMatchObject({ siteEnv: 'production', siteOrigin: FIXTURE_ORIGIN, robotsDefault: 'index, follow' });
     const c = runCheck(['--mode=production'], { RELEASE_CHECK_ROOT: project });
     expect(c.status, c.output).toBe(1);
-    for (const id of ['R6', 'R7', 'R19']) expect(c.stdout).toContain(`REQUIRED item unresolved: ${id} `);
+    for (const id of ['R4', 'R6', 'R7', 'R8', 'R9', 'R10', 'R11', 'R12', 'R16', 'R17', 'R18', 'R19']) {
+      expect(c.stdout).toContain(`REQUIRED item unresolved: ${id} `);
+    }
     expect(c.stdout).not.toContain('REQUIRED item unresolved: R1 ');
-    expect(c.stdout).toContain('REQUIRED contract: R3: absent from the registry');
-    // The dev page declares noindex, nofollow (D7 deferred) — also a production blocker.
-    expect(c.stdout).toContain('index.html: robots "noindex, nofollow"');
+    expect(c.stdout).not.toContain('REQUIRED item unresolved: R3 ');
+    expect(c.stdout).not.toContain('REQUIRED item unresolved: R5 ');
+    expect(c.stdout).not.toContain('REQUIRED contract:');
+    // Production output: approved robots on every page, and NO marker leaks (fallbacks applied).
+    expect(c.stdout).toContain('robots index.html: index, follow');
+    expect(c.stdout).toContain('robots grazie/index.html: noindex, follow');
+    expect(c.stdout).not.toContain('noindex, nofollow');
+    expect(c.stdout).not.toContain('leaked marker');
+    expect(c.stdout).toContain('markers found: 0');
     expect(c.stdout).not.toContain('build record siteEnv');
+    // Production robots.txt / sitemap use the fixture origin; exactly 8 sitemap URLs.
+    expect(readText(`${project}/dist/robots.txt`)).toBe(`User-agent: *\nAllow: /\n\nSitemap: ${FIXTURE_ORIGIN}/sitemap.xml\n`);
+    expect(readText(`${project}/dist/sitemap.xml`).match(/<loc>/g)).toHaveLength(8);
+    // No unconfirmed OVB figures, no company names, no photo box in production. The real
+    // portrait renders (Phase 3) but is never the og:image; Person.image is the approved photo (R14 provided).
+    const chi = readText(`${project}/dist/chi-siamo/index.html`);
+    for (const banned of ['tre uffici', 'circa 70', 'OVB', 'Elatos', 'Metal System', 'Euromec', 'Bergamo', 'data-photo-slot', 'og:image']) {
+      expect(chi).not.toContain(banned);
+    }
+    expect(chi).toContain(`"image":"${FIXTURE_ORIGIN}/images/alberto-medaglia.png"`);
+    expect(chi).toMatch(/<img[^>]*alt="Alberto Medaglia"/);
+    expect(chi).toContain('Senior Manager');
+    // JSON-LD present on indexable pages, with the E.164 phone and no pruned properties.
+    const home = readText(`${project}/dist/index.html`);
+    expect(home).toContain('"telephone":"+393341201847"');
+    for (const pruned of ['"email"', '"legalName"', '"vatID"', '"address"', '"logo"', '"founder"', '"sameAs"']) {
+      expect(home).not.toContain(pruned);
+    }
   }, BUILD_TIMEOUT);
 });
 

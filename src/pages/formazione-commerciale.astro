@@ -1,0 +1,107 @@
+---
+/**
+ * Formazione commerciale — CD §C6; SP C.6. Phase 3: shorter paragraphs (SCOPE CHANGE vs CD
+ * wording); H1/H2s unchanged.
+ * "Gli argomenti" + "Come si svolge" are a compact pair. The "Formazione e affiancamento
+ * continuativo" section is styled apart (bordered, service-link block) so the training
+ * formats are not confused with the Affiancamento continuativo service.
+ * D34: "Imprenditori" and "Contenuti costruiti sulla tua azienda" shortened.
+ * D35: more visual and compact. "Gli argomenti" is a grid of topic tiles; "Come si svolge" a
+ * short ruled column beside it; "Contenuti costruiti sulla tua azienda" a large statement.
+ * D36: hero sentence updated; the statement is about 17-20% smaller (statement--display-sm).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import CtaBlock from '../components/ui/CtaBlock.astro';
+import ContextLink from '../components/ui/ContextLink.astro';
+import ExperienceBlock from '../components/patterns/ExperienceBlock.astro';
+import { ROUTES } from '../content/site.ts';
+import { breadcrumbNode, serviceNode } from '../lib/seo/jsonld.ts';
+
+const route = ROUTES.formazione;
+const schema = (base: string) => [serviceNode(base, 'formazione'), breadcrumbNode(base, route.path, route.breadcrumb)];
+---
+<BaseLayout title={route.title} description={route.description} robots={route.robots} path={route.path} pageKey="formazione" schema={schema}>
+  <Hero
+    cta
+    interesse={route.interesse}
+    breadcrumb={{ label: route.breadcrumb, path: route.path }}
+    eyebrow="Formazione commerciale"
+    title="Formazione commerciale per venditori, responsabili e imprenditori"
+  >
+    <p>L'obiettivo non è soltanto trasferire conoscenze, ma rendere più efficace il lavoro commerciale sul campo.</p>
+  </Hero>
+
+  <section class="section section--tight" aria-labelledby="a-chi">
+    <div class="container stack">
+      <h2 id="a-chi" class="stack__heading">A chi è rivolta</h2>
+      <div class="audience">
+        <div class="audience__item">
+          <h3>Venditori</h3>
+          <p>Ad esempio: tecniche di vendita, negoziazione, gestione dei clienti.</p>
+        </div>
+        <div class="audience__item">
+          <h3>Responsabili commerciali</h3>
+          <p>Ad esempio: pianificazione commerciale e organizzazione dell'attività di vendita.</p>
+        </div>
+        <div class="audience__item">
+          <h3>Imprenditori</h3>
+          <p>Ad esempio: pianificazione commerciale e gestione dei clienti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section section--paper section--tight">
+    <div class="container topics-layout">
+      <section aria-labelledby="argomenti">
+        <h2 id="argomenti" class="duo__heading">Gli argomenti</h2>
+        <ul class="topics">
+          <li>Tecniche di vendita</li>
+          <li>Negoziazione</li>
+          <li>Comunicazione</li>
+          <li>Gestione delle obiezioni</li>
+          <li>Pianificazione commerciale</li>
+          <li>Gestione dei clienti</li>
+          <li>Organizzazione dell'attività di vendita</li>
+        </ul>
+      </section>
+      <section class="formats" aria-labelledby="come-si-svolge">
+        <h2 id="come-si-svolge" class="duo__heading">Come si svolge</h2>
+        <ul class="formats__list">
+          <li>In azienda</li>
+          <li>Online</li>
+          <li>Percorsi di affiancamento individuali</li>
+          <li>Percorsi di affiancamento di gruppo</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <section class="section section--tight" aria-labelledby="contenuti">
+    <div class="container stack">
+      <h2 id="contenuti" class="stack__heading">Contenuti costruiti sulla tua azienda</h2>
+      <p class="statement statement--display statement--display-sm">Partiamo dalla situazione reale della tua azienda e adattiamo i contenuti alle competenze di ogni persona coinvolta.</p>
+    </div>
+  </section>
+
+  <section class="section section--compact" aria-labelledby="insieme">
+    <div class="container compact compact--service">
+      <h2 id="insieme" class="compact__heading">Formazione e affiancamento continuativo possono lavorare insieme</h2>
+      <div>
+        <p>Dentro un affiancamento continuativo, oltre a formare, seguiamo l'applicazione di quanto appreso nel lavoro di ogni giorno.</p>
+        <ContextLink to="affiancamento" />
+      </div>
+    </div>
+  </section>
+
+  <ExperienceBlock
+    id="esperienza"
+    title="L'esperienza dietro la formazione"
+    items={[
+      { label: 'Creazione e gestione di reti commerciali', text: 'formazione su tecniche e processi di vendita, obiettivi individuali e di squadra, crescita dei collaboratori.' },
+    ]}
+  />
+
+  <CtaBlock interesse={route.interesse} />
+</BaseLayout>

@@ -55,9 +55,10 @@ describe('BaseLayout robots / canonical (S7)', () => {
     await expect(render({ robots: 'noindex, follow', path: '/grazie/' })).rejects.toThrow(/must not declare a canonical/);
   });
 
-  it('the dev index page still renders (noindex, nofollow, no canonical)', async () => {
+  it('the Home page renders (declared index, follow -> env-forced noindex, nofollow; self canonical)', async () => {
     const html = await container.renderToString(IndexPage);
     expect(robotsOf(html)).toBe('noindex, nofollow');
-    expect(html).not.toContain('rel="canonical"');
+    expect(html).toContain('<link rel="canonical" href="https://site-url-not-set.invalid/">');
+    expect(html.match(/<h1\b/g)).toHaveLength(1);
   });
 });

@@ -1,0 +1,74 @@
+---
+/**
+ * Header — ARCHITECTURE §4, §9, §12; CD §B. Not sticky.
+ *
+ * Brand: the Logo component (src/components/ui/Logo.astro), rendering the APPROVED final
+ *   asset (U1). The link keeps the accessible name "Medaglia Consulting" (aria-label).
+ * Nav: "Come collaboriamo" is a disclosure <button aria-expanded aria-controls> with real
+ *   links. Header CTA "Richiedi un confronto" is visible at ALL widths (N9).
+ * No-JS: desktop sub-menu opens on hover / focus-within; on narrow screens "Menu" is a
+ *   plain link to #site-nav; CSS (html:not(.js) .site-nav:target) reveals the header nav as
+ *   the same stacked panel, sub-links listed, so every page stays reachable. With JS
+ *   (src/client/nav.ts) "Menu" becomes a disclosure button; Esc closes and returns focus.
+ */
+import { BRAND, NAV_GROUP, NAV_GROUP_LABEL, NAV_ITEMS, ROUTES } from '../../content/site.ts';
+import Cta from '../ui/Cta.astro';
+import Logo from '../ui/Logo.astro';
+
+const current = Astro.url.pathname;
+const isCurrent = (path: string) => current === path;
+const groupActive = NAV_GROUP.some((i) => isCurrent(ROUTES[i.key].path));
+---
+<header class="site-header" data-header>
+  <div class="container site-header__bar">
+    <a class="brand" href="/" aria-label={BRAND}>
+      <Logo tone="light" />
+    </a>
+
+    <nav id="site-nav" class="site-nav" aria-label="Principale" data-nav>
+      <ul class="site-nav__list">
+        <li class="site-nav__group" data-nav-group>
+          <button
+            type="button"
+            class:list={['site-nav__toggle', { 'is-active': groupActive }]}
+            aria-expanded="false"
+            aria-controls="nav-collaboriamo"
+            data-nav-group-toggle
+          >
+            {NAV_GROUP_LABEL}
+            <span class="site-nav__chevron" aria-hidden="true"></span>
+          </button>
+          <ul id="nav-collaboriamo" class="site-nav__sub">
+            {NAV_GROUP.map((item) => (
+              <li>
+                <a
+                  href={ROUTES[item.key].path}
+                  class:list={['site-nav__sublink', { 'site-nav__sublink--emphasis': item.emphasis }]}
+                  aria-current={isCurrent(ROUTES[item.key].path) ? 'page' : undefined}
+                >{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </li>
+        {NAV_ITEMS.map((item) => (
+          <li>
+            <a href={ROUTES[item.key].path} class="site-nav__link" aria-current={isCurrent(ROUTES[item.key].path) ? 'page' : undefined}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+      <div class="site-nav__end">
+        <Cta placement="menu" variant="primary" class="btn--block" />
+      </div>
+    </nav>
+
+    <div class="site-header__actions">
+      <Cta placement="header" variant="primary" class="header-cta" />
+      <a class="menu-toggle menu-toggle--nojs" href="#site-nav" data-menu-nojs>Menu</a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-menu-toggle hidden>Menu</button>
+    </div>
+  </div>
+</header>
+
+<script>
+  import '../../client/nav.ts';
+</script>

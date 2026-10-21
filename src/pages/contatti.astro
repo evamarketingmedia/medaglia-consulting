@@ -1,0 +1,72 @@
+---
+/**
+ * Contatti — CD §C8 + §E verbatim; SP C.8. Hero without CTA; H1 without final full stop.
+ * Canonical is always /contatti/ (also with ?interesse=). The "[MISSING: chi richiama ed
+ * entro quando]" line (R2/R15, IMPORTANT) is a preview marker in non-production and is
+ * omitted in production. Address/legal data live in the footer, not here.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import ContextLink from '../components/ui/ContextLink.astro';
+import PhoneLink from '../components/ui/PhoneLink.astro';
+import EmailLink from '../components/ui/EmailLink.astro';
+import Fact from '../components/ui/Fact.astro';
+import ContactForm from '../components/form/ContactForm.astro';
+import { AREA_SERVED, ROUTES } from '../content/site.ts';
+import { facts } from '../content/facts.ts';
+import { isVisible } from '../lib/fact-view.ts';
+import { currentSiteEnv } from '../lib/site-env.ts';
+import { breadcrumbNode } from '../lib/seo/jsonld.ts';
+
+const route = ROUTES.contatti;
+const env = currentSiteEnv();
+const schema = (base: string) => [breadcrumbNode(base, route.path, route.breadcrumb)];
+---
+<BaseLayout title={route.title} description={route.description} robots={route.robots} path={route.path} pageKey="contatti" schema={schema}>
+  <Hero breadcrumb={{ label: route.breadcrumb, path: route.path }} title="Parliamo dello sviluppo commerciale della tua azienda">
+    <p>Compila il modulo: ti ricontattiamo per una telefonata conoscitiva.</p>
+  </Hero>
+
+  <div class="section">
+    <div class="container contact-layout">
+      <div class="contact-layout__form">
+        <section aria-labelledby="form-title" class="form-panel">
+          <h2 id="form-title" class="form-panel__title">Richiedi un confronto</h2>
+          <ContactForm />
+          <p class="form-panel__note">Il modulo è dedicato alle richieste delle aziende.</p>
+        </section>
+      </div>
+
+      <div class="contact-layout__side">
+        <section aria-labelledby="telefonata" class="side-block">
+          <h2 id="telefonata" class="side-block__title">La telefonata conoscitiva</h2>
+          <p>È una prima conversazione per capire le esigenze della tua azienda e valutare insieme come Medaglia Consulting può supportarti.</p>
+          {isVisible(facts.callback, env) && <Fact fact={facts.callback} block />}
+          <p>Per prepararti alla telefonata, pensa a come è organizzata oggi la tua attività di vendita e a cosa vorresti migliorare.</p>
+        </section>
+
+        <section aria-labelledby="altri-contatti" class="side-block">
+          <h2 id="altri-contatti" class="side-block__title">Altri contatti</h2>
+          <dl class="contact-list">
+            {isVisible(facts.phone, env) && (
+              <div><dt>Telefono</dt><dd><PhoneLink placement="contatti" class="phone-link--strong" /></dd></div>
+            )}
+            {isVisible(facts.email, env) && (
+              <div><dt>Email</dt><dd><EmailLink placement="contatti" show="address" /></dd></div>
+            )}
+          </dl>
+        </section>
+
+        <section aria-labelledby="dove" class="side-block">
+          <h2 id="dove" class="side-block__title">Dove lavoriamo</h2>
+          <p>Lavoriamo con PMI del {AREA_SERVED}.</p>
+        </section>
+
+        <div class="side-block side-block--route">
+          <p>Non sai da dove partire? L'affiancamento continuativo è il nostro percorso più completo.</p>
+          <ContextLink to="affiancamento" />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

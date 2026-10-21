@@ -1,0 +1,41 @@
+---
+/**
+ * Grazie — CD §C9 verbatim; SP C.9: noindex, follow; no canonical; not in the sitemap;
+ * no breadcrumb; hero without CTA. Always the clean URL /grazie/.
+ * The "[MISSING: chi richiama ed entro quando]" line: preview marker only; omitted in production.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import ContextLink from '../components/ui/ContextLink.astro';
+import PhoneLink from '../components/ui/PhoneLink.astro';
+import Fact from '../components/ui/Fact.astro';
+import { ROUTES } from '../content/site.ts';
+import { facts } from '../content/facts.ts';
+import { isVisible } from '../lib/fact-view.ts';
+import { currentSiteEnv } from '../lib/site-env.ts';
+
+const route = ROUTES.grazie;
+---
+<BaseLayout title={route.title} description={route.description} robots={route.robots} pageKey="grazie">
+  <Hero title="Grazie, abbiamo ricevuto la tua richiesta">
+    <p>Ti ricontatteremo per la telefonata conoscitiva, in cui capiremo le esigenze della tua azienda e valuteremo insieme come possiamo supportarti.</p>
+    {isVisible(facts.callback, currentSiteEnv()) && <Fact fact={facts.callback} block />}
+  </Hero>
+
+  <section class="section" aria-labelledby="nel-frattempo">
+    <div class="container rail">
+      <h2 id="nel-frattempo" class="rail__heading">Nel frattempo</h2>
+      <div class="rail__body">
+        <ul class="link-list">
+          <li><ContextLink to="affiancamento" /></li>
+          <li><ContextLink to="percorso" /></li>
+        </ul>
+        <p class="call-line">Hai bisogno di parlarci prima? Chiama il <PhoneLink placement="grazie" />.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../client/grazie.ts';
+</script>

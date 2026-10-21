@@ -1,0 +1,28 @@
+---
+/**
+ * 404 — CD §9b verbatim; SP C.9, F.9. Real 404 (static host serves /404.html with status 404).
+ * Not indexed, not in the sitemap, no canonical. Hero without CTA; the CTA sits further down.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import ContextLink from '../components/ui/ContextLink.astro';
+import Cta from '../components/ui/Cta.astro';
+import { ROUTES } from '../content/site.ts';
+
+const route = ROUTES.notFound;
+---
+<BaseLayout title={route.title} description={route.description} robots={route.robots} pageKey="404">
+  <Hero title="Pagina non trovata">
+    <p>La pagina che cerchi non esiste o è stata spostata.</p>
+  </Hero>
+  <section class="section" aria-label="Collegamenti utili">
+    <div class="container stack">
+      <ul class="link-list">
+        <li><a href="/">Torna alla home</a></li>
+        <li><ContextLink to="affiancamento" /></li>
+        <li><a href={ROUTES.contatti.path}>Contatti</a></li>
+      </ul>
+      <div><Cta placement="404" /></div>
+    </div>
+  </section>
+</BaseLayout>

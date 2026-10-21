@@ -1,0 +1,26 @@
+---
+/**
+ * ThreeLevels — Home "Tre modi di collaborare" (CD §C1.4, shortened in the Phase 3 redesign).
+ * Affiancamento continuativo is the core offer: centre column, navy panel, badge.
+ * Links unchanged (fixed CONTEXT_LINKS anchors).
+ */
+import ContextLink from '../ui/ContextLink.astro';
+---
+<div class="levels">
+  <article class="levels__item">
+    <h3 class="levels__title">Consulenza mirata</h3>
+    <p>Per un problema preciso: analisi, soluzioni e strategia.</p>
+    <ContextLink to="consulenza" />
+  </article>
+  <article class="levels__item levels__item--emphasis on-dark">
+    <p class="badge">Il percorso più completo</p>
+    <h3 class="levels__title">Affiancamento continuativo</h3>
+    <p>Generalmente 6–12 mesi, anche superiori: costruiamo il metodo con te e con la rete e ne seguiamo l'applicazione.</p>
+    <ContextLink to="affiancamento" />
+  </article>
+  <article class="levels__item">
+    <h3 class="levels__title">Sviluppo commerciale operativo</h3>
+    <p>Partecipiamo direttamente a organizzazione, gestione e sviluppo dell'attività commerciale.</p>
+    <ContextLink to="operativo" />
+  </article>
+</div>

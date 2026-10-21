@@ -1,0 +1,26 @@
+---
+/**
+ * CapabilityCard — Chi siamo "Quattro capacità complementari" (CD §D; ARCH §11.3, §12).
+ * D35: a concise block. It renders only the capability gained (`capability`) and one line on
+ * how it now serves companies (`today`), plus the existing context links. The detailed
+ * leads, sectors and activities stay in src/content/capabilities.ts and are NOT rendered.
+ * No company names (show_company:false), no figures, no company described as a client.
+ * The number comes from the parent <ol> (CSS counter): the four blocks are an ordered set.
+ */
+import type { Capability } from '../../content/capabilities.ts';
+import ContextLink from '../ui/ContextLink.astro';
+
+interface Props {
+  capability: Capability;
+}
+const { capability: c } = Astro.props;
+const headingId = `capacita-${c.id}`;
+---
+<article class="capability" aria-labelledby={headingId}>
+  <h3 id={headingId} class="capability__title">{c.title}</h3>
+  <p class="capability__gained">{c.capability}</p>
+  <p class="capability__today">{c.today}</p>
+  <p class="capability__links">
+    {c.links.map((l) => <ContextLink to={l} />)}
+  </p>
+</article>

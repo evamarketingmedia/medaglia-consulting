@@ -1,0 +1,31 @@
+---
+/**
+ * Privacy policy — SP C.9: noindex, follow; no canonical; not in the sitemap.
+ * The text is MISSING (R8, REQUIRED): it must come from the client or their legal advisor
+ * (BP §13.4). Nothing is written here. Non-production shows a preview marker; production
+ * renders the empty structure and the release check fails while R8 is open.
+ * To add the text: place the approved content in the <div class="legal-text"> below.
+ * Note for the privacy-text author (ARCH §5.6): the form sends a hidden `origine` field.
+ * /cookie-policy/ is NOT generated: cookiePolicyRequired is undecided (R9, D16).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import PreviewMarker from '../components/ui/PreviewMarker.astro';
+import { ROUTES } from '../content/site.ts';
+import { registry } from '../content/registry.ts';
+import { currentSiteEnv } from '../lib/site-env.ts';
+
+const route = ROUTES.privacy;
+const r8 = registry.items.find((i) => i.id === 'R8');
+const showMarker = currentSiteEnv() === 'non-production' && r8 !== undefined && r8.slot.state === 'missing';
+---
+<BaseLayout title={route.title} description={route.description} robots={route.robots} pageKey="privacy">
+  <Hero title="Privacy policy" />
+  <section class="section" aria-label="Testo dell'informativa">
+    <div class="container">
+      <div class="legal-text">
+        {showMarker && r8 !== undefined && <PreviewMarker labels={[`[MISSING: ${r8.id} — ${r8.name}]`]} block />}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+/**
+ * ExperienceBlock — "L'esperienza dietro …" (CD per page). Capability labels only, never
+ * company names; fixed link "Leggi il percorso di Alberto Medaglia".
+ * D35: compact band — heading and link on the left, capability labels as short columns on
+ * the right (no CV-like text).
+ */
+import ContextLink from '../ui/ContextLink.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  intro?: string;
+  items: readonly { label: string; text: string }[];
+}
+const { id, title, intro, items } = Astro.props;
+---
+<section class="section section--experience" aria-labelledby={id}>
+  <div class="container exp">
+    <div class="exp__head">
+      <h2 id={id} class="exp__heading">{title}</h2>
+      {intro && <p class="lead">{intro}</p>}
+      <ContextLink to="percorso" />
+    </div>
+    <ul class:list={['experience', { 'experience--single': items.length === 1 }]}>
+      {items.map((it) => (
+        <li class="experience__item"><strong class="experience__label">{it.label}:</strong> {it.text}</li>
+      ))}
+    </ul>
+  </div>
+</section>

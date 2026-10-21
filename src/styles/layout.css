@@ -1,4 +1,9 @@
-/* Layout primitives — FOUNDATION. Mobile-first; breakpoints 768px / 1024px (§12). */
+/*
+ * Layout primitives. Mobile-first; breakpoints 768px / 1024px (§12).
+ * Phase 3: generous whitespace and a section rhythm built from backgrounds, not rails:
+ *   navy (hero, closing CTA, footer) · paper (off-white) · white · steel tint · steel band.
+ * Heading levels/order are never changed by layout.
+ */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -8,22 +13,270 @@
 
 @media (min-width: 768px) {
   .container {
-    --container-gutter: var(--space-5);
+    --container-gutter: var(--space-6);
   }
 }
 
 @media (min-width: 1024px) {
   .container {
-    --container-gutter: var(--space-6);
+    --container-gutter: var(--space-7);
   }
 }
 
-/* Vertical rhythm between direct children. */
 .flow > * + * {
   margin-block-start: var(--space-4);
 }
 
 main {
   display: block;
-  padding-block: var(--space-6);
+}
+
+/* Reserve the mobile sticky bar's space so it never covers content or focused controls (§9, N9). */
+@media (max-width: 767.98px) {
+  body {
+    padding-bottom: calc(var(--sticky-bar-height) + env(safe-area-inset-bottom, 0px));
+  }
+
+  html {
+    scroll-padding-bottom: calc(var(--sticky-bar-height) + var(--space-4));
+  }
+
+  :focus {
+    scroll-margin-bottom: calc(var(--sticky-bar-height) + var(--space-4));
+  }
+}
+
+/* ---- Sections --------------------------------------------------------------------- */
+.section {
+  padding-block: calc(var(--space-7) + var(--space-2));
+  background-color: var(--color-white);
+}
+
+/* D35: desktop rhythm tightened from 8rem to 6rem; still generous, never cramped. */
+@media (min-width: 1024px) {
+  .section {
+    padding-block: var(--space-9);
+  }
+}
+
+.section--paper,
+.section--tint {
+  background-color: var(--color-paper);
+}
+
+.section--blue {
+  background-color: var(--color-steel-tint);
+}
+
+.section--steel {
+  background-color: var(--color-steel);
+  color: var(--color-white);
+}
+
+.section--navy {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+}
+
+.section--compact,
+.section--tight {
+  padding-block: var(--space-7);
+}
+
+@media (min-width: 1024px) {
+  .section--compact {
+    padding-block: var(--space-8);
+  }
+
+  /* D35: content-light sections (one statement, a short grid) need less air. */
+  .section--tight {
+    padding-block: calc(var(--space-8) + var(--space-2));
+  }
+}
+
+/* Two white sections in a row: a hairline keeps them apart without extra colour. */
+.section--rule > .container {
+  padding-top: var(--space-7);
+  background-image: linear-gradient(var(--color-line), var(--color-line));
+  background-repeat: no-repeat;
+  background-size: calc(100% - 2 * var(--container-gutter)) 1px;
+  background-position: top center;
+}
+
+.section--main {
+  border-top: 4px solid var(--color-navy);
+}
+
+/* Section heading device: a short gold rule above H2s on light backgrounds. */
+.stack__heading,
+.rail__heading,
+.split__heading,
+.person__heading {
+  position: relative;
+  padding-top: var(--space-5);
+}
+
+.stack__heading::before,
+.rail__heading::before,
+.split__heading::before,
+.person__heading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.5rem;
+  height: 3px;
+  background-color: var(--color-gold);
+}
+
+/* Stack: heading above full-width content (the default main section). */
+.stack > * + * {
+  margin-top: var(--space-6);
+}
+
+/* Heading + short intro kept together inside a stack. */
+.stack__intro > * + * {
+  margin-top: var(--space-4);
+}
+
+.stack__heading {
+  max-width: 24ch;
+}
+
+.stack__heading--wide {
+  max-width: 36ch;
+}
+
+.stack__heading--large {
+  font-size: var(--text-3xl);
+}
+
+@media (min-width: 1024px) {
+  .stack__heading--large {
+    font-size: var(--text-4xl);
+  }
+}
+
+/* Rail (service pages): heading on top, a narrower body column below. No side rail. */
+.rail {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.rail__heading {
+  max-width: 24ch;
+}
+
+.rail__body {
+  max-width: 48rem;
+}
+
+.rail__body > * + * {
+  margin-top: var(--space-5);
+}
+
+@media (min-width: 1024px) {
+  .rail {
+    gap: var(--space-6);
+  }
+}
+
+/* Split: a large heading left, a short body right (Home approach). */
+.split {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.split__body > * + * {
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .split {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: var(--space-9);
+    align-items: start;
+  }
+
+  .split__heading {
+    font-size: var(--text-4xl);
+  }
+}
+
+/* Compact supporting block: smaller heading, two columns on desktop. */
+.compact {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.compact__heading {
+  font-size: var(--text-xl);
+  max-width: 28ch;
+}
+
+.compact > div > * + * {
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .compact {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-8);
+    align-items: baseline;
+  }
+
+  .compact__heading {
+    font-size: var(--text-2xl);
+  }
+}
+
+/* Duo: two related H2 blocks read as one group. */
+.duo {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.duo__heading {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-4);
+}
+
+.duo__item > * + * {
+  margin-top: var(--space-4);
+}
+
+.duo .compact__heading {
+  margin-bottom: var(--space-3);
+}
+
+@media (min-width: 1024px) {
+  .duo {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-9);
+  }
+}
+
+.duo--split .duo__item + .duo__item {
+  border-top: 1px solid var(--color-line);
+  padding-top: var(--space-7);
+}
+
+@media (min-width: 1024px) {
+  .duo--split .duo__item + .duo__item {
+    border-top: 0;
+    padding-top: 0;
+  }
+}
+
+/* Utility visibility around the 768px breakpoint (CD §A: Chiama mobile, "Oppure chiama" desktop). */
+@media (max-width: 767.98px) {
+  .only-desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .only-mobile {
+    display: none !important;
+  }
 }

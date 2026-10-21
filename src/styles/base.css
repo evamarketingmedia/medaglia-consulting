@@ -1,6 +1,6 @@
 /*
- * Base element styles — FOUNDATION (ARCHITECTURE §9).
- * NEUTRAL — NOT BRAND, final palette waits for logo (D17). No decoration, no animation.
+ * Base element styles (ARCHITECTURE §9). Palette PROVISIONAL (see tokens.css): navy / steel / gold.
+ * No decorative animation; prefers-reduced-motion honoured.
  */
 html {
   font-family: var(--font-sans);
@@ -8,12 +8,22 @@ html {
   line-height: var(--leading-body);
   color: var(--color-text);
   background-color: var(--color-bg);
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  scroll-padding-top: var(--space-4);
 }
 
 body {
   font-size: var(--text-base);
   background-color: var(--color-bg);
   color: var(--color-text);
+  text-rendering: optimizeLegibility;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: var(--text-md);
+  }
 }
 
 h1,
@@ -22,31 +32,54 @@ h3,
 h4 {
   line-height: var(--leading-tight);
   font-weight: 700;
+  font-stretch: var(--stretch-display);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  color: var(--color-navy);
+}
+
+.on-dark h1,
+.on-dark h2,
+.on-dark h3,
+.on-dark h4 {
+  color: var(--color-white);
 }
 
 h1 {
-  font-size: var(--text-2xl);
+  font-size: var(--text-3xl);
+  font-weight: 720;
+  letter-spacing: -0.025em;
 }
 
 h2 {
-  font-size: var(--text-xl);
+  font-size: var(--text-2xl);
+  letter-spacing: -0.02em;
 }
 
 h3 {
   font-size: var(--text-lg);
-}
-
-h4 {
-  font-size: var(--text-md);
+  font-weight: 650;
+  line-height: var(--leading-snug);
+  letter-spacing: -0.01em;
 }
 
 @media (min-width: 768px) {
   h1 {
-    font-size: var(--text-3xl);
+    font-size: var(--text-4xl);
   }
 
   h2 {
-    font-size: var(--text-2xl);
+    font-size: var(--text-3xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: var(--text-5xl);
+  }
+
+  h2 {
+    font-size: 2.625rem;
   }
 }
 
@@ -54,27 +87,40 @@ p,
 li,
 dd {
   max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+strong {
+  font-weight: 650;
 }
 
 a {
-  color: inherit;
+  color: var(--color-navy);
   text-decoration: underline;
-  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
-/* Visible keyboard focus, >= 3:1 against the neutral background (§9, WCAG 2.4.7 / 2.4.11). */
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Visible keyboard focus, >= 3:1 (§9, WCAG 2.4.7 / 2.4.11). */
 :focus-visible {
   outline: var(--focus-width) solid var(--color-focus);
   outline-offset: var(--focus-offset);
-  box-shadow: 0 0 0 calc(var(--focus-offset) + var(--focus-width)) var(--color-focus-halo);
 }
 
-/* The programmatic focus target of the skip link shows no ring for mouse users. */
-main:focus:not(:focus-visible) {
+.on-dark :focus-visible {
+  outline-color: var(--color-gold);
+}
+
+/* The programmatic focus targets (skip link target, error summary) show no ring for mouse users. */
+main:focus:not(:focus-visible),
+[tabindex='-1']:focus:not(:focus-visible) {
   outline: none;
 }
 
-/* Reduced motion baseline: no animation is used at launch (§9). */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -109,9 +155,10 @@ main:focus:not(:focus-visible) {
   align-items: center;
   min-height: var(--tap-target-min);
   padding: var(--space-2) var(--space-4);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  border: 2px solid var(--color-text);
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  border: 2px solid var(--color-navy);
+  font-weight: 600;
   transform: translateY(-200%);
 }
 

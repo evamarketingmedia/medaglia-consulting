@@ -1,0 +1,9 @@
+---
+/** ExternalLink — new tab with rel="noopener noreferrer" (ARCH §4, §10.3). Not for internal or privacy links. */
+interface Props {
+  href: string;
+  class?: string;
+}
+const { href, class: className } = Astro.props;
+---
+<a class={className} href={href} target="_blank" rel="noopener noreferrer"><slot /></a>

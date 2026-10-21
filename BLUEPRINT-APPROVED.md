@@ -999,4 +999,11 @@ Mantenere una comunicazione professionale, concreta e credibile, evitando di att
 
 ---
 
+## Amendments (2026-10-20)
+
+Recorded only; the Blueprint above is not rewritten. Final copy lives in COPY-DRAFT.md (CL-22 to CL-26).
+- **D32:** contact hours are intentionally not published (client business decision). Footer and Contatti show no "Orari" line; the hours item is omitted with a reason, not a launch blocker.
+- **D34, Home (§7.1):** section structure is now hero (H1 + portrait) · situations · Come lavoriamo (4 steps) · Tre modi di collaborare · Alberto / experience · final CTA. The value strip and the "Metodo, persone e risultati concreti" section are removed.
+- **D34, Affiancamento (§7.2):** section structure is now hero · Quando serve · Cosa facciamo (Obiettivi e KPI, Metodo e processi, Gestione della rete, Formazione e affiancamento, Supporto nelle trattative, Sviluppo di nuovi canali e della rete) · Come funziona (4 steps + one meeting-rhythm note) · L'obiettivo (Ruoli chiari, Obiettivi misurabili, Metodo replicabile, Monitoraggio costante) · CTA "Parliamo della tua struttura commerciale." (interesse=affiancamento) · FAQ · two compact cross-links (Consulenza, Operativo). The experience block, the three-level comparison and the "coinvolgimento più diretto" section are removed.
+
 END OF DOCUMENT

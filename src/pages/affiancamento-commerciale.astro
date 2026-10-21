@@ -1,0 +1,149 @@
+---
+/**
+ * Affiancamento continuativo — CD §C2; SP C.2 (CORE page). H1, title, meta and FAQ unchanged.
+ * D34 focused landing page: hero · Quando serve · Cosa facciamo (merges "Che cos'è",
+ * "Perché un percorso continuativo", "Su cosa possiamo lavorare insieme", "Costruito sulla tua
+ * azienda") · Come funziona (4 steps + one secondary rhythm note) · L'obiettivo (replaces "Cosa
+ * resta all'azienda"; compact manifesto row) · FAQ · two cross-links · closing CTA (last, CL-27).
+ * Removed: experience block, "Tre livelli a confronto", "Quando serve un coinvolgimento più
+ * diretto".
+ * D36: "Cosa facciamo" six areas shown as compact modules (3×2 desktop), same texts and links.
+ * In-person/remote line omitted (U4). Cost FAQ unpublished (U7).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import CtaBlock from '../components/ui/CtaBlock.astro';
+import ContextLink from '../components/ui/ContextLink.astro';
+import FaqList from '../components/ui/FaqList.astro';
+import MethodSteps from '../components/patterns/MethodSteps.astro';
+import { ROUTES } from '../content/site.ts';
+import { FAQ_AFFIANCAMENTO, publishedFaq } from '../content/faq.ts';
+import { breadcrumbNode, faqNode, serviceNode } from '../lib/seo/jsonld.ts';
+
+const route = ROUTES.affiancamento;
+const schema = (base: string) => [
+  serviceNode(base, 'affiancamento'),
+  breadcrumbNode(base, route.path, route.breadcrumb),
+  faqNode(base, route.path, publishedFaq(FAQ_AFFIANCAMENTO)),
+];
+---
+<BaseLayout title={route.title} description={route.description} robots={route.robots} path={route.path} pageKey="affiancamento" schema={schema}>
+  <Hero
+    cta
+    interesse={route.interesse}
+    breadcrumb={{ label: route.breadcrumb, path: route.path }}
+    eyebrow="Affiancamento continuativo"
+    title="Affiancamento commerciale continuativo, al fianco dell'imprenditore e della rete vendita"
+  >
+    <p>Un percorso generalmente di 6–12 mesi, anche superiori: costruiamo con te, i responsabili e i commerciali un metodo commerciale e lo mettiamo in pratica.</p>
+    <p class="hero__statement">Affianchiamo l'imprenditore, non ci limitiamo a consigliare.</p>
+  </Hero>
+
+  <section class="section" aria-labelledby="quando-serve">
+    <div class="container rail">
+      <h2 id="quando-serve" class="rail__heading">Quando serve un affiancamento continuativo</h2>
+      <div class="rail__body">
+        <ul class="marks marks--columns">
+          <li>Lo sviluppo commerciale dipende ancora troppo da te.</li>
+          <li>Ogni venditore lavora a modo suo: manca un metodo condiviso.</li>
+          <li>Gli obiettivi commerciali non sono definiti o non vengono monitorati.</li>
+          <li>I commerciali non raggiungono i risultati attesi.</li>
+          <li>È difficile gestire, motivare e formare i venditori.</li>
+          <li>Manca una strategia per acquisire nuovi clienti.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="cosa-facciamo">
+    <div class="container stack">
+      <h2 id="cosa-facciamo" class="stack__heading">Cosa facciamo</h2>
+      <p class="lead">Lavoriamo con chi decide e con chi vende ogni giorno, sulle aree che contano per la tua azienda.</p>
+      <div class="areas">
+        <div class="areas__item">
+          <h3>Obiettivi e KPI</h3>
+          <p>Definiamo cosa misurare.</p>
+        </div>
+        <div class="areas__item">
+          <h3>Metodo e processi</h3>
+          <p>Costruiamo un metodo commerciale replicabile.</p>
+        </div>
+        <div class="areas__item">
+          <h3>Gestione della rete</h3>
+          <p>Organizziamo e supportiamo i venditori.</p>
+        </div>
+        <div class="areas__item">
+          <h3>Formazione e affiancamento</h3>
+          <p>Lavoriamo direttamente con la rete.</p>
+          <p class="areas__link"><ContextLink to="formazione" /></p>
+        </div>
+        <div class="areas__item">
+          <h3>Supporto nelle trattative</h3>
+          <p>Affianchiamo le trattative più rilevanti.</p>
+        </div>
+        <div class="areas__item">
+          <h3>Sviluppo di nuovi canali e della rete</h3>
+          <p>Partnership, segnalatori e rivenditori.</p>
+          <p class="areas__link"><ContextLink to="reti" /></p>
+        </div>
+      </div>
+      <p class="note">Non serve sempre tutto: scegliamo insieme le priorità.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="come-funziona">
+    <div class="container stack">
+      <h2 id="come-funziona" class="stack__heading">Come funziona</h2>
+      <MethodSteps
+        compact
+        steps={[
+          { title: 'Analisi', text: 'Cosa è stato fatto, con quali risultati, quali criticità e opportunità non sfruttate.' },
+          { title: 'Strategia', text: 'Scegliamo le priorità e la strategia più adatta alla tua azienda.' },
+          { title: 'Metodo', text: 'Definiamo come lavorare: attività, responsabilità, obiettivi.' },
+          { title: 'Applicazione', text: "Mettiamo in pratica le attività e ne seguiamo l'applicazione nel tempo." },
+        ]}
+      />
+      <p class="note note--small">Incontri generalmente settimanali o quindicinali, con intensità definita in base al progetto.</p>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="obiettivo">
+    <div class="container stack">
+      <h2 id="obiettivo" class="stack__heading stack__heading--wide">L'obiettivo: un metodo che non dipenda da una sola persona.</h2>
+      <ul class="pillars">
+        <li>Ruoli chiari</li>
+        <li>Obiettivi misurabili</li>
+        <li>Metodo replicabile</li>
+        <li>Monitoraggio costante</li>
+      </ul>
+      <p class="note">Misuriamo l'andamento attraverso obiettivi e indicatori definiti insieme.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq">
+    <div class="container rail">
+      <h2 id="faq" class="rail__heading">Domande frequenti</h2>
+      <div class="rail__body">
+        <FaqList items={FAQ_AFFIANCAMENTO} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--compact section--paper" aria-labelledby="altri-livelli">
+    <div class="container stack">
+      <h2 id="altri-livelli" class="compact__heading">Altri modi di collaborare</h2>
+      <div class="pair">
+        <div class="pair__item">
+          <h3>Cerchi un intervento più circoscritto?</h3>
+          <ContextLink to="consulenza" />
+        </div>
+        <div class="pair__item">
+          <h3>Cerchi un coinvolgimento operativo diretto?</h3>
+          <ContextLink to="operativo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock interesse={route.interesse} title="Parliamo della tua struttura commerciale." />
+</BaseLayout>

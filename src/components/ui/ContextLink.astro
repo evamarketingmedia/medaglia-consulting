@@ -1,0 +1,12 @@
+---
+/** ContextLink — fixed anchor text and target from CONTEXT_LINKS (CD §A: always the same text). */
+import { CONTEXT_LINKS, ROUTES, type ContextLinkKey } from '../../content/site.ts';
+
+interface Props {
+  to: ContextLinkKey;
+  class?: string;
+}
+const { to, class: className } = Astro.props;
+const link = CONTEXT_LINKS[to];
+---
+<a class:list={['context-link', className]} href={ROUTES[link.route].path}>{link.text}</a>

@@ -1,0 +1,38 @@
+---
+/**
+ * PhoneLink — `tel:` link from facts.phone (R1). The href is derived mechanically
+ * (src/lib/phone.ts): "0039 334 1201847" -> "tel:+393341201847".
+ *
+ * variant:
+ *  - 'number'  : the number as link text;
+ *  - 'chiama'  : "Chiama" button (mobile CTA, CD §A);
+ *  - 'oppure'  : "Oppure chiama il <number>" (desktop, CD §A).
+ * Missing phone: preview marker (non-production) and never a dead `tel:`; nothing in production.
+ */
+import { facts } from '../../content/facts.ts';
+import { CALL_LABEL } from '../../content/site.ts';
+import { toTelHref } from '../../lib/phone.ts';
+import { viewFact } from '../../lib/fact-view.ts';
+import { currentSiteEnv } from '../../lib/site-env.ts';
+import PreviewMarker from './PreviewMarker.astro';
+
+interface Props {
+  variant?: 'number' | 'chiama' | 'oppure';
+  placement: string;
+  class?: string;
+  ariaLabel?: string;
+}
+const { variant = 'number', placement, class: className, ariaLabel } = Astro.props;
+const view = viewFact(facts.phone, currentSiteEnv());
+const href = view.kind === 'value' ? toTelHref(view.value) : undefined;
+---
+{view.kind === 'value' && href !== undefined && (
+  variant === 'chiama' ? (
+    <a class:list={['btn btn--call', className]} href={href} data-placement={placement} aria-label={ariaLabel}>{CALL_LABEL}</a>
+  ) : variant === 'oppure' ? (
+    <p class:list={['call-line', className]}>Oppure chiama il <a href={href} data-placement={placement} class="call-line__number">{view.value}</a></p>
+  ) : (
+    <a class:list={['phone-link', className]} href={href} data-placement={placement}>{view.value}</a>
+  )
+)}
+{view.kind === 'marker' && <PreviewMarker labels={view.labels} />}

@@ -1,0 +1,20 @@
+---
+/**
+ * MethodSteps — the 4-step method (Home, Affiancamento). A real sequence: an ordered list.
+ * `feature`: large numerals and rules (Home "Come lavoriamo", on the steel-blue band).
+ */
+interface Props {
+  steps: readonly { title: string; text: string }[];
+  compact?: boolean;
+  feature?: boolean;
+}
+const { steps, compact = false, feature = false } = Astro.props;
+---
+<ol class:list={['steps', { 'steps--compact': compact, 'steps--feature': feature }]}>
+  {steps.map((s) => (
+    <li class="steps__item">
+      <h3 class="steps__title">{s.title}</h3>
+      <p class="steps__text">{s.text}</p>
+    </li>
+  ))}
+</ol>

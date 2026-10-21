@@ -1,7 +1,7 @@
 # COPY-DRAFT — Medaglia Consulting Website
 
 **Status:** APPROVED AT CHECKPOINT 2 (2026-10-19, BLUEPRINT D26): approved copy baseline for build. Client-dependent [MISSING], [REVIEW WITH CLIENT], [COPY REVIEW] and PRE-LAUNCH items remain open and must not be resolved without client confirmation. Approval does not authorise deployment or publishing.
-**Date:** 2026-10-16 · last updated 2026-10-17 (Checkpoint 2 final decisions)
+**Date:** 2026-10-16 · last updated 2026-10-17 (Checkpoint 2 final decisions) · updated 2026-10-20 (CL-22 to CL-26: Phase 3 implemented copy and D34) · updated 2026-10-21 (CL-27: final refinement) · updated 2026-10-21 (CL-28 / CL-29: D35, D36 and client-preview alignments)
 **Primary source of truth:** BLUEPRINT-APPROVED.md (same folder).
 **Produced by:** web-copywriter. **Reconciled by:** website-director, applying only the Checkpoint 2 decisions listed below. No other copy changes were made.
 **Labels:** notes in English; all website copy in Italian. `[MISSING: …]` = PRE-LAUNCH item. Launch is blocked while any `[MISSING]` remains in visible copy.
@@ -33,6 +33,14 @@ Change-log IDs (CL-n) are distinct from the Blueprint decision IDs (D-n).
 | CL-19 | Contatti review (2026-10-17), targeted revisions: "Per arrivare preparato" → "Per prepararti alla telefonata… la tua attività di vendita…"; Interesse options reordered (Affiancamento first) with note not to add a Reti option; no-scheduling note; privacy wording stays PRE-LAUNCH pending stack/data processing; address and company/legal data moved out of the Contatti page hierarchy into the shared footer legal area (all [MISSING]); "servizio centrale" → "L'affiancamento continuativo è il nostro percorso più completo". **Contatti copy approved at Checkpoint 2 (CL-21).** | Contatti / Footer / Form |
 | CL-20 | Checkpoint 2 final decisions (2026-10-17, APPROVED): form only on /contatti/ with fixed ?interesse= values (option a); Operativo service boundaries PRE-LAUNCH REQUIRED; Home specialism reduced to one sentence; all minor fixes from the cross-site Checkpoint 2 review applied; design-note labels standardised; Blueprint synced. | Whole document |
 | CL-21 | Checkpoint 2 APPROVED (2026-10-19, BLUEPRINT D26). Final cleanup: F3 reverted (Contatti H1 without final full stop); B2, B4, B5, B6, B7, B8, E8 kept; 404 CTA documentation clarified; SEO link #28 reason updated; Consulenza Service description derived from visible copy. Open client items unchanged. | Whole document / SEO-PLAN |
+| CL-22 | Phase 3 client-feedback redesign (2026-10-19/20; SCOPE CHANGE vs the Checkpoint 2 wording): new Home H1 "È meglio pagare zero per avere 1 / o meglio pagare 1 per avere 4?" — still **[REVIEW WITH CLIENT]** (R18 open, no visible marker); copy condensed on Home and all service pages; Chi siamo adds Alberto Medaglia's working principles ("Il suo modo di lavorare"), paraphrased in the third person, never quoted. Titles, metas and FAQs unchanged. | Home, service pages, Chi siamo |
+| CL-23 | D27 / D31: Alberto Medaglia's photo and the final logo are provided and verified by the agency owner (2026-10-19) and used as-is (photo in the Home and Chi siamo heroes and the Home experience block; logo in header and footer). The photo is never the og:image. | Home, Chi siamo, Global |
+| CL-24 | D32: contact hours are intentionally not published (client business decision, 2026-10-20). The "Orari" lines in Footer (§B) and Contatti §4 are not rendered. | Footer, Contatti |
+| CL-25 | Public email provided and verified by the agency owner (2026-10-20): medagliaconsulenza@gmail.com, rendered as a mailto: link ("Scrivici") in the footer and on Contatti. | Footer, Contatti |
+| CL-26 | D34 simplification pass (2026-10-20, user-approved): one purpose per page, each concept once per page. Home: value strip and "Metodo, persone e risultati concreti" removed; order now hero · situations · Come lavoriamo · Tre modi di collaborare · experience · CTA. Affiancamento: rebuilt as a focused landing page (hero · Quando serve · Cosa facciamo · Come funziona with one rhythm note · "L'obiettivo: rendere il metodo indipendente da una sola persona" · CTA "Parliamo della tua struttura commerciale." · FAQ · two cross-links); experience block, "Tre livelli a confronto" and "Quando serve un coinvolgimento più diretto" removed. Other service pages and Chi siamo: repetitions and long sentences trimmed; H1s, H2s, titles, metas and FAQs unchanged. "Non promettiamo risultati garantiti" is no longer repeated (one statement left, on Chi siamo); factual wording "Misuriamo l'andamento attraverso obiettivi e indicatori definiti insieme." used instead. §C1–§C7 now record the implemented copy. | Home, Affiancamento, Consulenza, Operativo, Reti, Formazione, Chi siamo, §A |
+| CL-27 | Final refinement (2026-10-21, user-requested): Home "Tre modi di collaborare" — the two links below the cards grouped under the secondary label "Altri ambiti di intervento" as "Reti commerciali →" and "Formazione commerciale →" (same destinations). Affiancamento — "Cosa facciamo" supporting lines shortened (links kept, visually secondary); meeting-rhythm note made secondary; H2 "L'obiettivo: un metodo che non dipenda da una sola persona." with the four outcomes as a one-row statement; order now hero · Quando serve · Cosa facciamo · Come funziona · L'obiettivo · FAQ · Altri modi di collaborare · final CTA "Parliamo della tua struttura commerciale." (last). Chi siamo — principle "Nessuna promessa di risultati garantiti" replaced by "Misurare per migliorare: obiettivi e indicatori chiari permettono di capire cosa funziona e dove intervenire." Titles, metas, H1s and FAQs unchanged. | Home, Affiancamento, Chi siamo |
+| CL-28 | D35 visual/compaction pass (2026-10-21, user-requested; less visible text, same meaning). Shared final CTA block: one strong treatment on every page (text and ?interesse= unchanged). Experience blocks: compact band (heading + link, short capability lines). Chi siamo: "Il nostro approccio" = statement + four pillars; Alberto Medaglia bio shortened; "Il suo modo di lavorare" = six short principles (paraphrased, never quoted); "Quattro capacità complementari" = four ordered concise blocks (capability gained + how it serves companies today + existing links; leads, sectors and activities kept in data, not rendered; show_company:false, no figures); "Misurabilità" merged into "Misurare per migliorare". Reti: "Da dove parti" as a two-way split; "Cosa facciamo" as five concise tiles (R7 line still body text in "Persone"); "Reti miste" + "Sguardo esterno" on one band; experience lines shortened. Formazione: topic tiles + formats column; "Contenuti costruiti sulla tua azienda" as a statement; experience line shortened. Titles, metas, H1s and FAQs unchanged. §C2, §C5–§C7 and §D record the implemented copy. | Global CTA, Chi siamo, Reti, Formazione, Consulenza/Operativo (experience band layout only) |
+| CL-29 | D36 (2026-10-21, user-requested) + client-preview alignments. Chi siamo: the Home H1 question no longer appears here; new navy band "Creare leva, non dipendenza." explains the principle — new copy, **[REVIEW WITH CLIENT]** (not approved; no registry item). Reti: H2 "Quale livello di collaborazione fa per te" renamed "Come possiamo lavorare insieme" (anchor #quale-livello unchanged), four wide cards; the Formazione card gains its existing link "Scopri la formazione commerciale". Formazione: hero sentence now "…ma rendere più efficace il lavoro commerciale sul campo."; statement shown smaller. Affiancamento: "Cosa facciamo" six areas as compact modules (3×2 desktop), same texts and links. Alignments: Formazione Service JSON-LD description aligned to the new hero sentence; Reti experience line "una rete numerosa" → "una rete strutturata" (matches the Chi siamo capability). Note: SEO-PLAN.md (not edited in this pass) still quotes the old Formazione Service description (§ structured data) and the "Quale livello" anchor label (link #20). | Chi siamo, Reti, Formazione, Affiancamento, JSON-LD |
 
 ---
 
@@ -51,7 +59,8 @@ Change-log IDs (CL-n) are distinct from the Blueprint decision IDs (D-n).
 - Secondary: **"Chiama"** (mobile, tap-to-call). Desktop: "Oppure chiama il [MISSING: numero di telefono]".
 - Email: **"Scrivici"**.
 - Hero CTAs (Home and service pages; the Chi siamo, Contatti and Grazie heroes have no CTA; the 404 hero has no CTA, but the 404 page has a CTA further down, see §9b): [Richiedi un confronto] → /contatti/ (with the page's ?interesse= value on service pages) · [Chiama] on mobile only.
-- Closing headline: **"Parliamo dello sviluppo commerciale della tua azienda."** (every final CTA block; the Contatti H1 uses the same text without the final full stop, per the F3 revert, CL-21).
+- Closing headline: **"Parliamo dello sviluppo commerciale della tua azienda."** (every final CTA block except Affiancamento, which uses "Parliamo della tua struttura commerciale.", CL-26; the Contatti H1 uses the same text without the final full stop, per the F3 revert, CL-21).
+- Shared final CTA block (D35 / CL-28): one treatment on every page that has it (all pages except Contatti, Grazie and 404): H2 closing headline · discovery-call note · [Richiedi un confronto] (with the page's ?interesse= value) · [Chiama] (mobile) / "Oppure chiama il …" (desktop). Text unchanged.
 - Contextual links (always the same text):
   - "Scopri l'affiancamento continuativo"
   - "Scopri la consulenza commerciale"
@@ -117,109 +126,62 @@ Mobile menu: same items, with the "Richiedi un confronto" button at the bottom o
 
 ### 1. HOME (/)
 
-> **Phase 3 design note:** The Home should not visually feel like 11 equally weighted sections. During architecture/design, evaluate integrating "The goal" into the surrounding narrative and treating "External perspective" as a compact supporting block, without deleting approved content.
+> **Implemented copy (Phase 3 client redesign CL-22, simplified by D34 / CL-26).** Flow: hero · situations · method · three ways to collaborate · experience · final CTA. The value strip and the "Metodo, persone e risultati concreti" section were removed in D34 (their concepts are carried by the hero copy and the four method steps). Title and meta unchanged.
 
 **1. Hero**
-- Eyebrow: Reti commerciali · PMI B2B e industriali · Nord Italia
-- H1: **Reti commerciali più organizzate ed efficaci per le PMI B2B e industriali** [REVIEW WITH CLIENT]
-- Body: Aiutiamo imprenditori e direzioni commerciali del Nord Italia a creare, riorganizzare e sviluppare la propria rete vendita. Affianchiamo l'imprenditore nell'applicare le strategie: non ci limitiamo a consigliare.
-- CTA: [Richiedi un confronto] → /contatti/ · [Chiama] (mobile) [MISSING: numero di telefono]
-- Microcopy under the CTA: Una telefonata conoscitiva per capire le esigenze della tua azienda.
-- Image note: a real photo of Alberto at work (in a meeting with a team, or at a whiteboard). No stock handshakes.
+- Eyebrow: Reti commerciali per PMI B2B e industriali del Nord Italia
+- H1: **È meglio pagare zero per avere 1 / o meglio pagare 1 per avere 4?** (one H1, second line highlighted) [REVIEW WITH CLIENT] (R18 open)
+- Body: Investire tempo, metodo e attenzione nelle persone e nell'organizzazione commerciale crea più leva che cercare risultati senza farle crescere. Per questo affianchiamo l'imprenditore nel creare, organizzare e sviluppare la rete vendita.
+- CTA: [Richiedi un confronto] → /contatti/ · [Chiama] (mobile) · [Scopri come lavoriamo] → #come-lavoriamo
+- Image: Alberto Medaglia's approved photo (CL-23).
 
 **2. Problems**
 - H2: **Le situazioni su cui interveniamo**
 - List:
   - Non c'è una struttura commerciale organizzata.
-  - Manca un metodo di vendita condiviso e replicabile.
-  - Gli obiettivi commerciali non sono definiti o non vengono monitorati.
+  - Manca un metodo condiviso e replicabile.
   - I commerciali non raggiungono i risultati attesi.
-  - È difficile gestire, motivare e formare i venditori.
   - Lo sviluppo commerciale dipende troppo dall'imprenditore.
-  - Manca una strategia per acquisire nuovi clienti e sviluppare nuove opportunità.
 
-**3. The goal**
-- H2: **Metodi, responsabilità e obiettivi chiari**
-- Body: Il nostro obiettivo è trasformare un'attività commerciale poco strutturata in un'organizzazione con metodi, responsabilità e obiettivi chiari. Una struttura commerciale organizzata, efficiente e capace di crescere nel tempo.
-- Body: Per farlo diamo importanza a quattro cose: metodo, persone, attività e risultati. [COPY REVIEW]
+**3. Method**
+- H2: **Come lavoriamo** (anchor #come-lavoriamo)
+- H3 (1): Analisi. Capiamo cosa è stato fatto, cosa funziona e dove si perdono opportunità.
+- H3 (2): Strategia. Scegliamo le priorità e la soluzione più semplice che può funzionare.
+- H3 (3): Metodo. La traduciamo in attività, responsabilità e obiettivi chiari e replicabili.
+- H3 (4): Applicazione. La mettiamo in pratica con le persone, la verifichiamo e la correggiamo.
 
 **4. Three ways to collaborate**
 - H2: **Tre modi di collaborare**
-- Intro: La collaborazione può partire da una semplice consulenza e arrivare alla gestione operativa dello sviluppo commerciale. Scegliamo insieme il livello giusto per la tua azienda.
-- H3: Consulenza mirata
-  - Interventi specifici per analizzare un problema, individuare le soluzioni e definire la strategia.
-  - Link: Scopri la consulenza commerciale
-- H3: Affiancamento continuativo (visually emphasised)
-  - Badge: Il percorso più completo
-  - Un percorso al fianco tuo e della rete commerciale, generalmente di 6–12 mesi, anche superiori. Il tempo per conoscere a fondo l'azienda, costruire un metodo commerciale e supportarne l'applicazione.
-  - Link: Scopri l'affiancamento continuativo
-- H3: Sviluppo commerciale operativo
-  - Partecipiamo direttamente all'organizzazione, alla gestione e allo sviluppo dell'attività commerciale dell'azienda.
-  - Link: Scopri lo sviluppo commerciale operativo
+- H3: Consulenza mirata — Per un problema preciso: analisi, soluzioni e strategia. Link: Scopri la consulenza commerciale
+- H3: Affiancamento continuativo (visually emphasised; badge "Il percorso più completo") — Generalmente 6–12 mesi, anche superiori: costruiamo il metodo con te e con la rete e ne seguiamo l'applicazione. Link: Scopri l'affiancamento continuativo
+- H3: Sviluppo commerciale operativo — Partecipiamo direttamente a organizzazione, gestione e sviluppo dell'attività commerciale. Link: Scopri lo sviluppo commerciale operativo
+- Secondary label: Altri ambiti di intervento
+- Links (secondary navigation, decorative arrow): Reti commerciali → (/sviluppo-reti-commerciali/) · Formazione commerciale → (/formazione-commerciale/)
 
-**5. Method**
-- H2: **Come lavoriamo**
-- H3 (1): Analisi. Partiamo dall'attività commerciale esistente: cosa è stato fatto, quali risultati sono stati raggiunti, quali criticità sono emerse, quali opportunità non sono state sfruttate.
-- H3 (2): Strategie. Individuiamo le strategie più adatte alla tua azienda.
-- H3 (3): Metodo. Definiamo un metodo operativo chiaro, che la rete possa applicare e replicare.
-- H3 (4): Applicazione. Organizziamo le attività necessarie per raggiungere gli obiettivi e le mettiamo in pratica.
-- Body: Ogni intervento è costruito sulle reali necessità dell'impresa. Il ritmo cambia da caso a caso: incontri settimanali o quindicinali, oppure un affiancamento più intenso, con confronti frequenti con te, i responsabili e i commerciali.
-
-**6. The specialism**
-- H2: **La nostra specializzazione: le reti commerciali**
-- Body: Lavoriamo sull'intera organizzazione commerciale, per renderla più organizzata ed efficace: persone, metodo, obiettivi, processi e canali di vendita.
-- List:
-  - Analisi e riorganizzazione della rete vendita esistente
-  - Obiettivi, KPI (gli indicatori che misurano l'andamento) e sistemi di monitoraggio
-  - Metodi e processi commerciali replicabili
-  - Piani di carriera e sistemi incentivanti
-  - Partnership, reti di segnalatori e rivenditori
-- Body: Ci occupiamo anche di reti miste, fatte di venditori diretti, segnalatori, rivenditori e partner, da organizzare con ruoli e obiettivi chiari.
-- Link: Scopri come sviluppiamo le reti commerciali
-
-**7. External perspective** [DESIGN: COMPACT SUPPORTING BLOCK]
-- H2: **Uno sguardo esterno sulla tua organizzazione**
-- Body: Dall'interno alcune inefficienze e opportunità sono difficili da vedere: le individuiamo con uno sguardo esterno e ci lavoriamo insieme a te.
-
-**8. Experience behind Medaglia Consulting (no company names)**
+**5. Experience behind Medaglia Consulting (no company names)**
 - H2: **L'esperienza dietro Medaglia Consulting**
-- Intro: Il nostro approccio si basa sul percorso professionale di Alberto Medaglia: quattro esperienze complementari, maturate direttamente nelle vendite e nell'organizzazione commerciale.
-- Creazione e gestione di reti commerciali: costruire, formare e coordinare una rete commerciale numerosa.
-- Vendita diretta e sviluppo di partnership: vendere in prima persona nel B2B, coordinare altri venditori, sviluppare partnership commerciali.
-- Analisi organizzativa ed economica dell'impresa: analizzare organizzazione, costi e opportunità di miglioramento commerciale.
-- Sviluppo di strutture commerciali industriali: definire un metodo commerciale e progettare una rete vendita strutturata in ambito industriale.
+- Body: Dall'esperienza diretta di Alberto Medaglia nasce il metodo, dal metodo l'applicazione in azienda.
+- List: Vendita diretta B2B · Creazione e gestione di reti commerciali · Analisi organizzativa ed economica dell'impresa · Sviluppo commerciale in ambito industriale
 - Link: Leggi il percorso di Alberto Medaglia
+- Image: Alberto Medaglia's approved photo.
 
-**9. Training (short)**
-- H2: **Formazione commerciale**
-- Body: Per venditori, responsabili commerciali e imprenditori. L'obiettivo non è solo trasferire conoscenze, ma migliorare concretamente competenze e performance commerciali. In azienda, online o con percorsi di affiancamento individuali e di gruppo.
-- Link: Scopri la formazione commerciale
-
-**10. Who we work with**
-- H2: **Con chi lavoriamo**
-- Body: Piccole e medie imprese del Nord Italia, in particolare B2B e industriali. I nostri interlocutori sono imprenditori e figure direzionali.
-- H3: **Hai già una rete commerciale**
-  - Body: La analizziamo, la riorganizziamo e la rafforziamo.
-- H3: **Vuoi costruirla da zero**
-  - Body: Definiamo insieme struttura, metodo e canali con cui partire.
-
-**11. Final CTA**
+**6. Final CTA**
 - H2: **Parliamo dello sviluppo commerciale della tua azienda.**
 - Body: Una telefonata conoscitiva per capire le esigenze della tua azienda e valutare insieme come possiamo supportarti.
-- CTA: [Richiedi un confronto] → /contatti/ · [Chiama] (mobile) / Oppure chiama il [MISSING: numero di telefono] (desktop)
+- CTA: [Richiedi un confronto] → /contatti/ · [Chiama] (mobile) / Oppure chiama il 0039 334 1201847 (desktop)
 
 ---
 
 ### 2. AFFIANCAMENTO CONTINUATIVO (/affiancamento-commerciale/)
 
-> **Phase 3 design note:** The page currently contains 13 content sections. During architecture/design, do not give every section equal visual weight. Preserve the approved content but group related sections so the page feels structured rather than repetitive.
+> **Implemented copy (D34 / CL-26): focused service landing page.** "Che cos'è", "Perché un percorso continuativo", "Su cosa possiamo lavorare insieme" and "Costruito sulla tua azienda" are merged into "Cosa facciamo"; "Cosa resta all'azienda" is replaced by "L'obiettivo"; the experience block, "Tre livelli a confronto" and "Quando serve un coinvolgimento più diretto" are removed (two compact cross-links remain). H1, title, meta and FAQ unchanged.
 
 **1. Hero**
 - Eyebrow: Affiancamento continuativo
 - H1: **Affiancamento commerciale continuativo, al fianco dell'imprenditore e della rete vendita**
-- Body: Non un report da leggere e archiviare, ma un percorso, generalmente di 6–12 mesi, anche superiori. Lavoriamo con te, i responsabili e i commerciali per costruire un metodo commerciale e metterlo in pratica.
-- Body: Affianchiamo l'imprenditore, non ci limitiamo a consigliare.
-- CTA: [Richiedi un confronto] → /contatti/?interesse=affiancamento · [Chiama] (mobile) [MISSING: numero di telefono]
+- Body: Un percorso generalmente di 6–12 mesi, anche superiori: costruiamo con te, i responsabili e i commerciali un metodo commerciale e lo mettiamo in pratica.
+- Statement: Affianchiamo l'imprenditore, non ci limitiamo a consigliare.
+- CTA: [Richiedi un confronto] → /contatti/?interesse=affiancamento · [Chiama] (mobile)
 
 **2. When it is needed**
 - H2: **Quando serve un affiancamento continuativo**
@@ -231,77 +193,32 @@ Mobile menu: same items, with the "Richiedi un confronto" button at the bottom o
   - È difficile gestire, motivare e formare i venditori.
   - Manca una strategia per acquisire nuovi clienti.
 
-> **Phase 3 design note:** consider presenting "Che cos'è" and "Perché un percorso continuativo" as one continuous visual block rather than two equally weighted sections. Do not delete approved content.
-
-**3. What it is**
-- H2: **Che cos'è**
-- Body: È un percorso di medio-lungo periodo. Durante il percorso supportiamo te e la rete commerciale nello sviluppo delle attività.
-- Body: Lavoriamo con l'imprenditore, i responsabili e i commerciali: con chi decide e con chi vende ogni giorno.
-
-**4. Why ongoing**
-- H2: **Perché un percorso continuativo**
-- Body: Un metodo commerciale non si cambia con una riunione. Un percorso di alcuni mesi ci permette di:
-  - conoscere a fondo l'azienda e le persone che ci lavorano;
-  - costruire un metodo commerciale adatto alla tua realtà;
-  - supportarne l'applicazione e intervenire dove serve.
-- Body: È nei percorsi continuativi e nei progetti con un coinvolgimento operativo diretto che il nostro lavoro dà il valore maggiore.
-
-**5. How it works**
-- H2: **Come funziona**
-- [DESIGN: present the four-step method compactly — the same framework also appears on Home.]
-- H3: 1. Analisi dell'attività commerciale esistente. Cosa è stato fatto, quali risultati sono stati raggiunti, quali criticità sono emerse, quali opportunità non sono state sfruttate.
-- H3: 2. Strategie. Individuiamo le strategie più adatte alla tua azienda.
-- H3: 3. Metodo operativo. Definiamo come lavorare: attività, responsabilità, obiettivi.
-- H3: 4. Applicazione. Organizziamo le attività necessarie per raggiungere gli obiettivi e ne seguiamo l'applicazione nel tempo.
-- H3: **Il ritmo degli incontri**
-  - Incontri di consulenza settimanali o quindicinali, oppure un affiancamento più intenso, con confronti frequenti con te, i responsabili e i commerciali.
-  - Editorial note (not visible): [MISSING: modalità degli incontri — in presenza, da remoto o entrambe]. Add one line here only once confirmed; until then say nothing.
-
-**6. What it can cover**
-- H2: **Su cosa possiamo lavorare insieme**
-- List:
-  - Obiettivi e KPI: obiettivi chiari e indicatori per misurare l'andamento delle attività
-  - Metodi e processi commerciali replicabili
-  - Formazione e affiancamento operativo dei commerciali (link: Scopri la formazione commerciale)
-  - Gestione e motivazione dei venditori
-  - Supporto nella gestione delle trattative
-  - Sviluppo della rete: partnership, segnalatori, rivenditori (link: Scopri come sviluppiamo le reti commerciali)
-  - Monitoraggio di attività, opportunità e risultati
+**3. What we do** (six compact modules, 3×2 on desktop, D36 / CL-29; texts and links unchanged)
+- H2: **Cosa facciamo**
+- Body: Lavoriamo con chi decide e con chi vende ogni giorno, sulle aree che contano per la tua azienda.
+- H3: Obiettivi e KPI — Definiamo cosa misurare.
+- H3: Metodo e processi — Costruiamo un metodo commerciale replicabile.
+- H3: Gestione della rete — Organizziamo e supportiamo i venditori.
+- H3: Formazione e affiancamento — Lavoriamo direttamente con la rete. Link (small, secondary): Scopri la formazione commerciale
+- H3: Supporto nelle trattative — Affianchiamo le trattative più rilevanti.
+- H3: Sviluppo di nuovi canali e della rete — Partnership, segnalatori e rivenditori. Link (small, secondary): Scopri come sviluppiamo le reti commerciali
 - Microcopy: Non serve sempre tutto: scegliamo insieme le priorità.
 
-**7. Adapted to the company**
-- H2: **Costruito sulla tua azienda**
-- [DESIGN: integrate this into the preceding "Su cosa possiamo lavorare insieme" block rather than treating it as a standalone major section.]
-- Body: Ogni intervento è costruito sulle reali necessità dell'impresa. Il metodo viene adattato alle caratteristiche, alle risorse e agli obiettivi della tua azienda.
+**4. How it works**
+- H2: **Come funziona**
+- H3: 1. Analisi. Cosa è stato fatto, con quali risultati, quali criticità e opportunità non sfruttate.
+- H3: 2. Strategia. Scegliamo le priorità e la strategia più adatta alla tua azienda.
+- H3: 3. Metodo. Definiamo come lavorare: attività, responsabilità, obiettivi.
+- H3: 4. Applicazione. Mettiamo in pratica le attività e ne seguiamo l'applicazione nel tempo.
+- Note (small, muted, below the steps): Incontri generalmente settimanali o quindicinali, con intensità definita in base al progetto.
+- Editorial note (not visible): [MISSING: modalità degli incontri — in presenza, da remoto o entrambe]. Add one line here only once confirmed; until then say nothing.
 
-**8. What stays with the company**
-- H2: **Cosa resta all'azienda**
-- Body: L'obiettivo del percorso è lasciare all'azienda un metodo commerciale più organizzato, misurabile e replicabile. In pratica: ruoli e responsabilità chiari, obiettivi definiti e un monitoraggio regolare delle attività.
-- Body: Non promettiamo risultati garantiti. Lavoriamo su metodo, persone, attività e risultati, e misuriamo insieme l'andamento delle attività.
+**5. The goal**
+- H2: **L'obiettivo: un metodo che non dipenda da una sola persona.**
+- Statement row (one row on desktop, thin gold rules; not cards): Ruoli chiari · Obiettivi misurabili · Metodo replicabile · Monitoraggio costante
+- Note: Misuriamo l'andamento attraverso obiettivi e indicatori definiti insieme.
 
-**9. Experience behind it**
-- H2: **L'esperienza dietro l'affiancamento**
-- Creazione e gestione di reti commerciali: costruire, formare e coordinare una rete commerciale numerosa, con obiettivi individuali e di squadra.
-- Sviluppo di strutture commerciali industriali: analisi della struttura commerciale, definizione di un metodo misurabile e replicabile, obiettivi e KPI, affiancamento e formazione delle risorse commerciali in ambito industriale.
-- Link: Leggi il percorso di Alberto Medaglia
-
-**10. Compare the three levels**
-- H2: **Tre livelli a confronto**
-- [DESIGN: on mobile, prefer three readable comparison cards or another responsive treatment rather than a horizontally compressed table.]
-
-| | Consulenza mirata | Affiancamento continuativo (highlighted) | Sviluppo commerciale operativo |
-|---|---|---|---|
-| In sintesi | Interventi specifici per analizzare un problema, individuare soluzioni, definire strategie | Percorso generalmente di 6–12 mesi, anche superiori | Partecipazione diretta all'organizzazione, alla gestione e allo sviluppo commerciale |
-| Il nostro ruolo | Analizziamo e definiamo la strategia con te | Lavoriamo con te e con la rete, con incontri regolari | Interveniamo direttamente nello sviluppo e nel coordinamento dell'attività commerciale |
-| Indicato quando | Hai un'esigenza specifica e circoscritta | Vuoi costruire un metodo e vederlo applicato | Vuoi un coinvolgimento diretto nella gestione commerciale |
-- Link: Scopri la consulenza commerciale
-
-**11. When more is needed** [DESIGN: COMPACT CROSS-LINK BLOCK]
-- H2: **Quando serve un coinvolgimento più diretto**
-- Body: Nei progetti più operativi interveniamo direttamente nello sviluppo e nel coordinamento dell'attività commerciale.
-- Link: Scopri lo sviluppo commerciale operativo
-
-**12. FAQ**
+**6. FAQ**
 - H2: **Domande frequenti**
 - H3: Quanto dura un affiancamento?
   - Generalmente 6–12 mesi, anche superiori. È un percorso di medio-lungo periodo.
@@ -314,25 +231,31 @@ Mobile menu: same items, with the "Richiedi un confronto" button at the bottom o
 - H3: In quale zona lavorate?
   - Lavoriamo con PMI del Nord Italia.
 
-**13. CTA**
-- H2: **Parliamo dello sviluppo commerciale della tua azienda.**
+**7. Cross-links** [DESIGN: COMPACT BLOCK]
+- H2: **Altri modi di collaborare**
+- H3: Cerchi un intervento più circoscritto? — Link: Scopri la consulenza commerciale
+- H3: Cerchi un coinvolgimento operativo diretto? — Link: Scopri lo sviluppo commerciale operativo
+
+**8. Final CTA** (last section of the page, CL-27)
+- H2: **Parliamo della tua struttura commerciale.**
 - Body: Una telefonata conoscitiva per capire le esigenze della tua azienda e valutare insieme come possiamo supportarti.
-- CTA: [Richiedi un confronto] → /contatti/?interesse=affiancamento · [Chiama] (mobile) / Oppure chiama il [MISSING: numero di telefono] (desktop)
+- CTA: [Richiedi un confronto] → /contatti/?interesse=affiancamento · [Chiama] (mobile) / Oppure chiama il 0039 334 1201847 (desktop)
 
 ---
 
 ### 3. CONSULENZA COMMERCIALE (/consulenza-commerciale/)
 
+> **Implemented copy (Phase 3 shortening, CL-22; D34 / CL-26).** H1, H2s, title, meta and FAQ unchanged.
+
 **1. Hero**
 - Eyebrow: Consulenza commerciale
 - H1: **Consulenza commerciale per PMI: interventi mirati e supporto alla direzione**
-- Body: Quando serve analizzare un problema commerciale preciso, oppure confrontarsi regolarmente sulle scelte di vendita e di organizzazione. La nostra specializzazione è creare, organizzare e sviluppare reti commerciali per le PMI.
-- CTA: [Richiedi un confronto] → /contatti/?interesse=consulenza · [Chiama] (mobile) [MISSING: numero di telefono]
+- Body: Per analizzare un problema commerciale preciso o confrontarsi regolarmente sulle scelte di vendita e di organizzazione.
+- CTA: [Richiedi un confronto] → /contatti/?interesse=consulenza · [Chiama] (mobile)
 
 **2. Consulenza mirata**
 - H2: **Consulenza mirata**
-- Body: Interventi specifici per analizzare un problema, individuare le soluzioni e definire la strategia. Partiamo dall'attività commerciale esistente: cosa è stato fatto, quali risultati sono stati raggiunti, quali criticità sono emerse, quali opportunità non sono state sfruttate.
-- Body: La consulenza può riguardare, ad esempio:
+- Body: Interventi specifici per analizzare un problema, individuare le soluzioni e definire la strategia, partendo da ciò che è già stato fatto e dai risultati raggiunti. Ad esempio:
   - una rete vendita da riorganizzare;
   - un metodo di vendita da definire e condividere;
   - obiettivi commerciali da impostare e monitorare;
@@ -340,18 +263,17 @@ Mobile menu: same items, with the "Richiedi un confronto" button at the bottom o
 
 **3. Consulenza direzionale commerciale**
 - H2: **Consulenza direzionale commerciale**
-- Body: Un supporto periodico all'imprenditore per analizzare i risultati, valutare nuove strategie e migliorare l'organizzazione commerciale.
-- Body: È pensata per chi guida l'azienda e vuole avere un interlocutore esterno con cui confrontarsi regolarmente.
+- Body: Un supporto periodico all'imprenditore che vuole un interlocutore esterno per analizzare i risultati, valutare nuove strategie e migliorare l'organizzazione commerciale.
 
 **4. Experience behind it**
 - H2: **L'esperienza dietro la consulenza**
-- Analisi organizzativa ed economica dell'impresa: analisi dell'organizzazione e delle criticità commerciali, studio dei centri di costo, piani per organizzare la funzione commerciale, supporto all'imprenditore nelle decisioni e nelle priorità.
+- Analisi organizzativa ed economica dell'impresa: organizzazione, criticità commerciali e centri di costo, per aiutare l'imprenditore a decidere le priorità.
 - Link: Leggi il percorso di Alberto Medaglia
 
 **5. When it is enough**
 - H2: **Quando basta una consulenza, e quando serve di più**
 - Body: La consulenza è adatta quando l'esigenza è circoscritta: un problema da analizzare, una decisione da prendere, una strategia da definire.
-- Body: Se invece vuoi costruire un metodo e vederlo applicato dalla rete, servono tempo e continuità. È il caso dell'affiancamento continuativo, generalmente di 6–12 mesi, anche superiori. La collaborazione può partire dalla semplice consulenza e arrivare alla gestione operativa dello sviluppo commerciale.
+- Body: Per costruire un metodo e vederlo applicato dalla rete servono tempo e continuità: è il caso dell'affiancamento continuativo.
 - Link: Scopri l'affiancamento continuativo
 
 **6. FAQ**
@@ -368,17 +290,19 @@ Mobile menu: same items, with the "Richiedi un confronto" button at the bottom o
 **7. CTA**
 - H2: **Parliamo dello sviluppo commerciale della tua azienda.**
 - Body: Una telefonata conoscitiva per capire le esigenze della tua azienda e valutare insieme come possiamo supportarti.
-- CTA: [Richiedi un confronto] → /contatti/?interesse=consulenza · [Chiama] (mobile) / Oppure chiama il [MISSING: numero di telefono] (desktop)
+- CTA: [Richiedi un confronto] → /contatti/?interesse=consulenza · [Chiama] (mobile) / Oppure chiama il 0039 334 1201847 (desktop)
 
 ---
 
 ### 4. SVILUPPO COMMERCIALE OPERATIVO (/sviluppo-commerciale-operativo/)
 
+> **Implemented copy (Phase 3 shortening, CL-22; D34 / CL-26).** H1, H2s, title and meta unchanged.
+
 **1. Hero**
 - Eyebrow: Sviluppo commerciale operativo
 - H1: **Sviluppo commerciale operativo: partecipiamo direttamente all'attività commerciale**
-- Body: Entriamo nel progetto con un coinvolgimento diretto nell'organizzazione, nella gestione e nello sviluppo dell'attività commerciale della tua azienda. È il livello di collaborazione più operativo.
-- CTA: [Richiedi un confronto] → /contatti/?interesse=operativo · [Chiama] (mobile) [MISSING: numero di telefono]
+- Body: Il livello di collaborazione più operativo: entriamo direttamente nell'organizzazione, nella gestione e nello sviluppo dell'attività commerciale della tua azienda.
+- CTA: [Richiedi un confronto] → /contatti/?interesse=operativo · [Chiama] (mobile)
 
 **2. What it includes**
 - H2: **Cosa comprende**
@@ -388,11 +312,11 @@ Mobile menu: same items, with the "Richiedi un confronto" button at the bottom o
   - Definire le strategie
   - Monitorare i risultati
   - Sviluppare nuovi clienti
-- [PRE-LAUNCH] Confirm with the client the boundaries of the operational service: what Medaglia Consulting does and does not take responsibility for directly, especially regarding ongoing client acquisition, coordination/management of the sales force and any external commercial-management responsibility. Do not invent or publish exclusions until the client confirms them.
+- [PRE-LAUNCH] Confirm with the client the boundaries of the operational service: what Medaglia Consulting does and does not take responsibility for directly, especially regarding ongoing client acquisition, coordination/management of the sales force and any external commercial-management responsibility. Do not invent or publish exclusions until the client confirms them. (R16, unchanged.)
 
 **3. When it fits**
 - H2: **Quando è indicato**
-- Body: È il livello di collaborazione pensato per le aziende che cercano un coinvolgimento più diretto nello sviluppo commerciale. Può essere utile, ad esempio, quando:
+- Body: Quando serve un coinvolgimento diretto, ad esempio se:
   - lo sviluppo commerciale dipende troppo dall'imprenditore;
   - manca una struttura commerciale organizzata;
   - serve una strategia per acquisire nuovi clienti e sviluppare nuove opportunità.
@@ -405,26 +329,25 @@ Mobile menu: same items, with the "Richiedi un confronto" button at the bottom o
 **5. Complementary expertise** [DESIGN: COMPACT SUPPORTING BLOCK]
 - H2: **Competenze complementari quando servono**
 - Body: Quando un progetto lo richiede, coinvolgiamo professionisti e imprese che collaborano con noi, in base alle competenze necessarie.
-- [DESIGN] Compact supporting block. Must be visually distinct from the commercial partnerships/referrers/resellers content in section 4 (it refers to Medaglia's own partner professionals, not business partnerships).
 
 **6. How it starts**
 - H2: **Come si parte**
-- Body: Ogni progetto parte dall'analisi dell'attività commerciale esistente: cosa è stato fatto, quali risultati sono stati raggiunti, quali criticità sono emerse e quali opportunità non sono state sfruttate. Su questa base definiamo strategie, metodo e attività.
+- Body: Dall'analisi dell'attività commerciale esistente. Su questa base definiamo strategia, metodo e attività.
 
 **7. Experience behind it**
 - H2: **L'esperienza dietro lo sviluppo operativo**
-- Vendita diretta e sviluppo di partnership: vendita B2B in prima persona, organizzazione e supporto di altri venditori, affiancamento nelle trattative, sviluppo di partnership e di canali indiretti con segnalatori e partner.
+- Vendita diretta e sviluppo di partnership: vendita B2B in prima persona, supporto ad altri venditori e alle trattative, partnership e canali indiretti con segnalatori e partner.
 - Link: Leggi il percorso di Alberto Medaglia
 
 **8. Link to Affiancamento**
 - H2: **Quando è più adatto l'affiancamento continuativo**
-- Body: Se l'obiettivo è soprattutto costruire un metodo commerciale e supportarne l'applicazione nel tempo, l'affiancamento continuativo prevede un percorso generalmente di 6–12 mesi, anche superiori.
+- Body: Se l'obiettivo è costruire un metodo commerciale e seguirne l'applicazione nel tempo.
 - Link: Scopri l'affiancamento continuativo
 
 **9. CTA**
 - H2: **Parliamo dello sviluppo commerciale della tua azienda.**
 - Body: Una telefonata conoscitiva per capire le esigenze della tua azienda e valutare insieme come possiamo supportarti.
-- CTA: [Richiedi un confronto] → /contatti/?interesse=operativo · [Chiama] (mobile) / Oppure chiama il [MISSING: numero di telefono] (desktop)
+- CTA: [Richiedi un confronto] → /contatti/?interesse=operativo · [Chiama] (mobile) / Oppure chiama il 0039 334 1201847 (desktop)
 
 Editorial note: the operational-service boundaries are a PRE-LAUNCH REQUIRED client confirmation (see §2 and section G). No exclusions are invented or published until the client confirms them.
 
@@ -432,126 +355,101 @@ Editorial note: the operational-service boundaries are a PRE-LAUNCH REQUIRED cli
 
 ### 5. SVILUPPO RETI COMMERCIALI (/sviluppo-reti-commerciali/)
 
-> **Phase 3 design note:** This page should not visually present every content group as an equally weighted section. "Cosa facciamo" is the main service-detail block; "Reti miste", "Sguardo esterno" and the collaboration-level selector can be more compact supporting blocks.
+> **Implemented copy (Phase 3 shortening, CL-22; D34 / CL-26; D35 / CL-28; D36 / CL-29).** H1, title and meta unchanged; one H2 renamed in D36 ("Come possiamo lavorare insieme", was "Quale livello di collaborazione fa per te"). "Cosa facciamo" is the main service-detail block; "Reti miste" and "Sguardo esterno" share one band; "Come possiamo lavorare insieme" is four wide cards.
 
 **1. Hero**
 - Eyebrow: Reti commerciali
 - H1: **Sviluppo di reti commerciali per PMI B2B e industriali**
-- Body: Lavoriamo sull'intera organizzazione commerciale per costruire reti più organizzate ed efficaci: metodo, persone, obiettivi, processi e canali di vendita.
-- CTA: [Richiedi un confronto] → /contatti/ · [Chiama] (mobile) [MISSING: numero di telefono]
+- Body: Reti più organizzate ed efficaci, che non dipendono da una sola persona: lavoriamo su metodo, persone, obiettivi, processi e canali di vendita.
+- CTA: [Richiedi un confronto] → /contatti/ · [Chiama] (mobile)
 
-**2. Starting points**
+**2. Starting points** (two-way split, D35)
 - H2: **Da dove parti: una rete vendita da riorganizzare o da costruire**
-- H3: **Hai già una rete commerciale**
-  - Body: La analizziamo e la riorganizziamo: ruoli, metodo, obiettivi, strumenti di monitoraggio.
-- H3: **Vuoi costruirla da zero**
-  - Body: Definiamo insieme struttura, metodo e canali con cui partire.
+- Label (decorative, aria-hidden): Riorganizzare — H3: **Hai già una rete commerciale** — La analizziamo e la riorganizziamo: ruoli, metodo, obiettivi, monitoraggio.
+- Label (decorative, aria-hidden): Costruire — H3: **Vuoi costruirla da zero** — Definiamo insieme struttura, metodo e canali con cui partire.
 
-**3. What we do** [DESIGN: MAIN SERVICE-DETAIL BLOCK]
+**3. What we do** [DESIGN: MAIN SERVICE-DETAIL BLOCK] (five concise tiles, D35)
 - H2: **Cosa facciamo**
-- H3: Organizzazione e metodo
-  - Analisi e riorganizzazione della rete vendita esistente
-  - Metodologie e processi commerciali replicabili
-- H3: Obiettivi e monitoraggio
-  - Obiettivi, KPI (gli indicatori che misurano l'andamento delle attività) e sistemi di monitoraggio
-- H3: Persone
-  - Body: Una rete funziona meglio quando le persone sanno cosa devono fare, come devono lavorare e su quali obiettivi vengono valutate.
-  - Formazione e affiancamento operativo dei commerciali (link: Scopri la formazione commerciale)
-  - Piani di carriera e sistemi incentivanti
-  - Supporto nell'inserimento di nuove figure commerciali, quando necessario
-- H3: Crescita
-  - Partnership, reti di segnalatori e rivenditori
-  - Nuove opportunità commerciali e di mercato
+- H3: Organizzazione e metodo — Ruoli chiari e processi commerciali replicabili.
+- H3: Obiettivi e monitoraggio — Obiettivi e KPI, gli indicatori che misurano l'andamento delle attività.
+- H3: Persone (accent tile) — Formazione, affiancamento, piani di carriera e sistemi incentivanti. Supporto nell'inserimento di nuove figure commerciali, quando necessario. Link: Scopri la formazione commerciale
+- H3: Crescita — Nuove opportunità commerciali e di mercato.
+- H3: Partnership e canali indiretti — Segnalatori, rivenditori e partner.
 
 Editorial note: "Supporto nell'inserimento di nuove figure commerciali, quando necessario" is the single R7 line on this page. It stays in body text, never as a heading.
 
-**4. Mixed network and partnerships** [DESIGN: COMPACT SUPPORTING BLOCK]
+**4. Mixed network and partnerships** [DESIGN: COMPACT SUPPORTING BLOCK] (shares one band with §5, D35)
 - H2: **Reti miste e partnership**
-- Body: Una rete commerciale non è fatta solo di venditori diretti. Può includere segnalatori, rivenditori e partner: canali indiretti che servono ad ampliare le opportunità, ma che vanno organizzati con ruoli, regole e obiettivi chiari.
+- Body: I canali indiretti ampliano le opportunità, se organizzati con ruoli, regole e obiettivi chiari.
 
 **5. External perspective** [DESIGN: COMPACT SUPPORTING BLOCK]
 - H2: **Il valore di uno sguardo esterno**
-- Body: Chi lavora ogni giorno dentro la rete fa fatica a vederne inefficienze e opportunità. Osserviamo l'organizzazione commerciale con una prospettiva esterna, per riconoscere ciò che dall'interno è difficile vedere.
-- Editorial note: this is the primary service page where the outside-perspective concept is explained in detail. Avoid duplicating the same explanation on other service pages.
+- Body: Dall'interno è difficile vedere inefficienze e opportunità della rete. Una prospettiva esterna le rende evidenti.
 
 **6. Experience behind it**
 - H2: **L'esperienza dietro il nostro lavoro sulle reti**
-- Creazione e gestione di reti commerciali: costruire, formare e coordinare una rete commerciale numerosa.
-- Vendita diretta e sviluppo di partnership: partnership con imprese complementari e canali indiretti con segnalatori e partner.
-- Sviluppo di strutture commerciali industriali: metodo commerciale, KPI e progettazione di una rete mista in ambito industriale.
+- Creazione e gestione di reti commerciali: costruire, formare e coordinare una rete strutturata. (CL-29)
+- Vendita diretta e sviluppo di partnership: partner, segnalatori e canali indiretti.
+- Sviluppo di strutture commerciali industriali: metodo, KPI e rete mista in ambito industriale.
 - Link: Leggi il percorso di Alberto Medaglia
 
-**7. Which level fits** [DESIGN: COMPACT SUPPORTING BLOCK]
-- H2: **Quale livello di collaborazione fa per te**
-- Affiancamento continuativo: per costruire il metodo e seguirne l'applicazione, generalmente 6–12 mesi, anche superiori. Link: Scopri l'affiancamento continuativo
-- Consulenza mirata: per un'esigenza specifica. Link: Scopri la consulenza commerciale
-- Sviluppo commerciale operativo: per un coinvolgimento diretto. Link: Scopri lo sviluppo commerciale operativo
-- Formazione: per rafforzare le competenze della rete.
+**7. Ways to work together** (four wide cards, 2×2 desktop, D36 / CL-29)
+- H2: **Come possiamo lavorare insieme** (was "Quale livello di collaborazione fa per te"; anchor #quale-livello unchanged)
+- H3: Affiancamento continuativo (emphasised card) — Per costruire il metodo e seguirne l'applicazione. Link: Scopri l'affiancamento continuativo
+- H3: Consulenza mirata — Per un'esigenza specifica. Link: Scopri la consulenza commerciale
+- H3: Sviluppo commerciale operativo — Per un coinvolgimento diretto. Link: Scopri lo sviluppo commerciale operativo
+- H3: Formazione — Per rafforzare le competenze della rete. Link: Scopri la formazione commerciale
 
 **8. CTA**
 - H2: **Parliamo dello sviluppo commerciale della tua azienda.**
 - Body: Una telefonata conoscitiva per capire le esigenze della tua azienda e valutare insieme come possiamo supportarti.
-- CTA: [Richiedi un confronto] → /contatti/ · [Chiama] (mobile) / Oppure chiama il [MISSING: numero di telefono] (desktop)
+- CTA: [Richiedi un confronto] → /contatti/ · [Chiama] (mobile) / Oppure chiama il 0039 334 1201847 (desktop)
 
 ---
 
 ### 6. FORMAZIONE COMMERCIALE (/formazione-commerciale/)
 
-> **Phase 3 design note:** "Gli argomenti" and "Come si svolge" may be presented as a compact visual pair rather than two large standalone sections.
+> **Implemented copy (Phase 3 shortening, CL-22; D34 / CL-26; D35 / CL-28; D36 / CL-29).** H1, H2s, title and meta unchanged. "Gli argomenti" (topic tiles) and "Come si svolge" (short column beside it) are a compact pair.
 
 **1. Hero**
 - Eyebrow: Formazione commerciale
 - H1: **Formazione commerciale per venditori, responsabili e imprenditori**
-- Body: L'obiettivo non è soltanto trasferire conoscenze, ma migliorare concretamente le competenze e le performance commerciali.
-- CTA: [Richiedi un confronto] → /contatti/?interesse=formazione · [Chiama] (mobile) [MISSING: numero di telefono]
+- Body: L'obiettivo non è soltanto trasferire conoscenze, ma rendere più efficace il lavoro commerciale sul campo. (D36 / CL-29)
+- CTA: [Richiedi un confronto] → /contatti/?interesse=formazione · [Chiama] (mobile)
 
 **2. For whom**
 - H2: **A chi è rivolta**
-- H3: **Venditori**
-  - Body: Ad esempio: tecniche di vendita, negoziazione, gestione dei clienti.
-- H3: **Responsabili commerciali**
-  - Body: Ad esempio: pianificazione commerciale e organizzazione dell'attività di vendita.
-- H3: **Imprenditori**
-  - Body: Ad esempio: pianificazione commerciale, organizzazione dell'attività di vendita e gestione dei clienti.
+- H3: **Venditori** — Ad esempio: tecniche di vendita, negoziazione, gestione dei clienti.
+- H3: **Responsabili commerciali** — Ad esempio: pianificazione commerciale e organizzazione dell'attività di vendita.
+- H3: **Imprenditori** — Ad esempio: pianificazione commerciale e gestione dei clienti.
 
 **3. Topics** [DESIGN: COMPACT PAIR WITH 4]
 - H2: **Gli argomenti**
-- List:
-  - Tecniche di vendita
-  - Negoziazione
-  - Comunicazione
-  - Gestione delle obiezioni
-  - Pianificazione commerciale
-  - Gestione dei clienti
-  - Organizzazione dell'attività di vendita
+- List: Tecniche di vendita · Negoziazione · Comunicazione · Gestione delle obiezioni · Pianificazione commerciale · Gestione dei clienti · Organizzazione dell'attività di vendita
 
 **4. Formats** [DESIGN: COMPACT PAIR WITH 3]
 - H2: **Come si svolge**
-- List:
-  - In azienda
-  - Online
-  - Percorsi di affiancamento individuali
-  - Percorsi di affiancamento di gruppo
+- List: In azienda · Online · Percorsi di affiancamento individuali · Percorsi di affiancamento di gruppo
 
 **5. Tailored content**
 - H2: **Contenuti costruiti sulla tua azienda**
-- Body: I contenuti vengono adattati alle esigenze effettive dell'azienda e alle competenze delle persone coinvolte. Per questo partiamo dalla situazione reale della tua azienda.
+- Statement (large, reduced size in D36): Partiamo dalla situazione reale della tua azienda e adattiamo i contenuti alle competenze di ogni persona coinvolta.
 
 **6. Training inside an ongoing engagement**
 - H2: **Formazione e affiancamento continuativo possono lavorare insieme**
-- Body: La formazione può far parte anche di un affiancamento continuativo. In questo caso, oltre a formare, seguiamo l'applicazione di quanto appreso nel lavoro di ogni giorno.
+- Body: Dentro un affiancamento continuativo, oltre a formare, seguiamo l'applicazione di quanto appreso nel lavoro di ogni giorno.
 - Link: Scopri l'affiancamento continuativo
 - [DESIGN] The layout must clearly distinguish the individual/group training formats ("Percorsi di affiancamento individuali/di gruppo" in "Come si svolge") from the separate "Affiancamento continuativo" service.
 
 **7. Experience behind it**
 - H2: **L'esperienza dietro la formazione**
-- Creazione e gestione di reti commerciali: formazione delle risorse sulle tecniche commerciali e sui processi di vendita, obiettivi individuali e di squadra, motivazione e sviluppo professionale dei collaboratori.
+- Creazione e gestione di reti commerciali: formazione su tecniche e processi di vendita, obiettivi individuali e di squadra, crescita dei collaboratori.
 - Link: Leggi il percorso di Alberto Medaglia
 
 **8. CTA**
 - H2: **Parliamo dello sviluppo commerciale della tua azienda.**
 - Body: Una telefonata conoscitiva per capire le esigenze della tua azienda e valutare insieme come possiamo supportarti.
-- CTA: [Richiedi un confronto] → /contatti/?interesse=formazione · [Chiama] (mobile) / Oppure chiama il [MISSING: numero di telefono] (desktop)
+- CTA: [Richiedi un confronto] → /contatti/?interesse=formazione · [Chiama] (mobile) / Oppure chiama il 0039 334 1201847 (desktop)
 
 Editorial note: do not mention funded training, certificates/attestati, fixed courses, dates or prices unless confirmed by the client.
 
@@ -559,39 +457,49 @@ Editorial note: do not mention funded training, certificates/attestati, fixed co
 
 ### 7. CHI SIAMO (/chi-siamo/)
 
+> **Implemented copy (Phase 3 client redesign with Alberto's principles, CL-22; D34 / CL-26; D35 / CL-28; D36 / CL-29).** Purpose: trust and credibility, not a service page. Approved order kept (approach first, then Alberto Medaglia, CL-9). H1, title and meta unchanged.
+
 **Hero**
 - H1: **Chi siamo: competenze manageriali ed esperienza diretta nelle vendite**
-- Body: Medaglia Consulting è specializzata nella creazione, organizzazione e sviluppo delle reti commerciali delle piccole e medie imprese.
+- Body: Medaglia Consulting è specializzata nella creazione, organizzazione e sviluppo delle reti commerciali delle piccole e medie imprese. Dietro il metodo c'è Alberto Medaglia e la sua esperienza diretta nelle vendite.
+- Image: Alberto Medaglia's approved photo (CL-23).
 
 **1. Our approach**
 - H2: **Il nostro approccio**
-- Body: Uniamo competenze manageriali, conoscenza diretta delle vendite, analisi aziendale e capacità di implementazione operativa.
-- Body: Affianchiamo l'imprenditore, non ci limitiamo a consigliare.
+- Statement: Affianchiamo l'imprenditore, non ci limitiamo a consigliare.
+- Pillars (one row): Competenze manageriali · Conoscenza diretta delle vendite · Analisi aziendale · Implementazione operativa
 
 **2. Alberto Medaglia**
-- H2: **Alberto Medaglia**
-- Subline: [MISSING: ruolo di Alberto Medaglia in Medaglia Consulting]. Until confirmed, show the name only, no title.
-- Body: Laureato in Economia e Management, Alberto Medaglia ha maturato esperienza nella creazione, organizzazione e gestione di reti commerciali.
-- Body: Nel suo percorso ha ricoperto ruoli di responsabilità nella gestione e nello sviluppo di strutture commerciali, coordinando numerosi collaboratori. Ha poi sviluppato la propria attività di consulenza, affiancando imprese di diversi settori nell'organizzazione delle vendite, nella formazione dei commerciali e nello sviluppo di nuove opportunità commerciali.
-- Image: [MISSING: foto professionale di Alberto Medaglia]. A real working context, not a studio cut-out on white if avoidable.
+- H2: **Alberto Medaglia** (name only, no title)
+- Lead: Laureato in Economia e Management, ha costruito, organizzato e gestito reti commerciali.
+- Body: In una rete di consulenza finanziaria e assicurativa è passato dal ruolo di segnalatore a quello di Senior Manager, coordinando numerosi collaboratori. Oggi affianca imprese di diversi settori nell'organizzazione delle vendite, nella formazione dei commerciali e nello sviluppo di nuove opportunità.
+- H3: **Il suo modo di lavorare** (six short principles, paraphrased, third person, never quoted; D35)
+  - Un metodo replicabile: Semplice, replicabile e scalabile: non dipende da una sola persona.
+  - Grandi obiettivi, micro-obiettivi: Un obiettivo ambizioso diventa una serie di passi concreti.
+  - Ogni persona è diversa: Guida, responsabilità e supporto cambiano in base a ciò che serve a ogni collaboratore.
+  - Autonomia e responsabilità: Persone che si prendono responsabilità e lavorano in autonomia.
+  - Dal problema al metodo: Davanti a un problema cerca la causa e ne ricava un metodo da usare.
+  - Persone che guidano altre persone: Guidare significa anche far crescere chi potrà, a sua volta, guidare altri.
+
+**2b. Principle band** (navy band, D36 / CL-29) [REVIEW WITH CLIENT] — new copy, not approved; the Home H1 question (R18) does not appear on this page.
+- H2: **Creare leva, non dipendenza.**
+- Body: Il punto non è fare tutto da soli, ma costruire persone, metodo e organizzazione capaci di moltiplicare il risultato del proprio lavoro.
 
 **3. Four capabilities**
 - H2: **Quattro capacità complementari**
-- Intro: Il percorso professionale di Alberto si basa su quattro esperienze complementari. Più che un elenco di aziende, rappresentano quattro capacità che oggi mettiamo al servizio delle imprese.
-- H3 × 4: see section D (name and fallback versions).
-- [DESIGN] Phase 3 design note: do not present the four experiences as a wall of text or as a client-logo wall. Each capability should foreground: the capability; the professional context; the most relevant 3–4 verified activities; how that experience translates into Medaglia Consulting's current work. Additional verified activities may be progressively disclosed if needed, but must remain accessible (in the HTML, not removed).
+- Intro: Esperienze diverse, quattro capacità che oggi mettiamo al servizio delle imprese.
+- Four ordered concise blocks (D35): H3 title · capability gained · how it serves companies today · existing links. See section D ("Rendered since D35"). Leads, sectors and activities are not rendered; `show_company:false`; no figures.
 
 **4. How we work**
 - H2: **Come lavoriamo**
 - Concretezza: lavoriamo sulle attività reali dell'azienda, non su documenti teorici.
-- Misurabilità: obiettivi e indicatori chiari, per sapere a che punto si è.
 - Con il team interno: costruiamo il metodo insieme a imprenditore, responsabili e commerciali.
 - Partendo dalle tue necessità: ogni intervento è costruito sulle reali necessità dell'impresa.
-- Nessuna promessa di risultati garantiti: diamo importanza a metodo, persone, attività e risultati, e misuriamo insieme l'andamento.
+- Misurare per migliorare: obiettivi e indicatori definiti insieme permettono di capire cosa funziona e dove intervenire. (CL-27; "Misurabilità" merged here in D35 / CL-28)
 
 **5. Partner network**
 - H2: **Professionisti e imprese partner**
-- Body: Medaglia Consulting si avvale anche di una rete di professionisti e imprese partner, coinvolti nei progetti in base alle competenze e alle necessità specifiche. Così possiamo adattare l'intervento a ogni progetto, mantenendo un approccio personalizzato.
+- Body: Medaglia Consulting si avvale di una rete di professionisti e imprese partner, coinvolti in base alle competenze necessarie a ogni progetto.
 
 **6. Second profile**
 - Not written, not rendered (template slot only, BLUEPRINT-APPROVED §8.1).
@@ -599,7 +507,7 @@ Editorial note: do not mention funded training, certificates/attestati, fixed co
 **7. CTA**
 - H2: **Parliamo dello sviluppo commerciale della tua azienda.**
 - Body: Una telefonata conoscitiva per capire le esigenze della tua azienda e valutare insieme come possiamo supportarti.
-- CTA: [Richiedi un confronto] → /contatti/ · [Chiama] (mobile) / Oppure chiama il [MISSING: numero di telefono] (desktop)
+- CTA: [Richiedi un confronto] → /contatti/ · [Chiama] (mobile) / Oppure chiama il 0039 334 1201847 (desktop)
 
 ---
 
@@ -661,7 +569,13 @@ Editorial note: address and company/legal data are not a content section of this
 
 ## D. Chi siamo: the four capabilities (name version + fallback)
 
-Template per capability: H3 title · lead sentence (sector-first) · activities list · Settore · Azienda (optional field, `show_company:false` by default) · "Come si traduce oggi nel nostro lavoro" + link.
+**Rendered since D35 (CL-28):** each block shows only H3 title · capability gained · how it serves companies today · existing links. The template, leads, activities and sectors below are kept as source data (src/content/capabilities.ts) and are NOT rendered.
+1. Creazione e gestione di reti commerciali — Costruire, formare e coordinare una rete commerciale strutturata. / Il metodo per creare o riorganizzare la rete vendita della tua azienda. → Scopri come sviluppiamo le reti commerciali · Scopri la formazione commerciale
+2. Vendita diretta e sviluppo di partnership — Vendere in prima persona e aprire canali indiretti con partner e segnalatori. / Vendita B2B, coordinamento dei venditori, partnership e canali indiretti. → Scopri lo sviluppo commerciale operativo
+3. Analisi organizzativa ed economica dell'impresa — Leggere organizzazione, costi e attività commerciale di un'impresa. / Priorità commerciali decise dopo aver letto organizzazione e numeri. → Scopri la consulenza commerciale
+4. Sviluppo di strutture commerciali industriali — Rendere una struttura commerciale industriale organizzata, misurabile e replicabile. / Metodo, obiettivi e progettazione della rete per aziende industriali. → Scopri l'affiancamento continuativo
+
+Template per capability (source data, pre-D35): H3 title · lead sentence (sector-first) · activities list · Settore · Azienda (optional field, `show_company:false` by default) · "Come si traduce oggi nel nostro lavoro" + link.
 
 The company name always sits in a removable bracket. The FALLBACK version is the same text with the bracket removed; nothing else changes. **Publication of each name requires final client confirmation before launch.**
 
@@ -869,5 +783,6 @@ Editorial rules for the four capabilities (internal, not published):
 9. **Alberto Medaglia (Chi siamo):** role/title in Medaglia Consulting and professional photo — client confirmation and delivery before launch. Until then, name only, no title.
 10. **Metal System status/relationship:** client clarification where needed before launch (tense-neutral wording until then; never presented as a client, project or success).
 11. **Operativo service boundaries (REQUIRED):** client confirms what Medaglia Consulting does and does not take responsibility for directly (ongoing client acquisition, coordination/management of the sales force, any external commercial-management responsibility) before publication. Nothing invented meanwhile.
+12. **Chi siamo principle band (open, D36 / CL-29):** "Creare leva, non dipendenza." + body [REVIEW WITH CLIENT] — new copy, not approved; review with the client before launch.
 
 END OF DOCUMENT

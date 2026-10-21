@@ -36,14 +36,15 @@ export type ContractEntry = { readonly tier: 'required'; readonly omitAllowed: b
 const req = (omitAllowed: boolean): ContractEntry => Object.freeze({ tier: 'required', omitAllowed });
 
 /**
- * The 15 PRE-LAUNCH REQUIRED items of ARCHITECTURE §11.4.1, frozen. Only R7 (PEC/REA,
- * "se applicabile") and R12 (office address / publication) may be omitted with a reason.
+ * The 15 PRE-LAUNCH REQUIRED items of ARCHITECTURE §11.4.1, frozen. Only R3 (contact
+ * hours: intentionally not published, D32, 2026-10-20), R7 (PEC/REA, "se applicabile") and
+ * R12 (office address / publication) may be omitted with a reason.
  * The registry must contain every one of them with exactly this tier and omitAllowed;
  * `registry.complete` alone is never trusted.
  */
 export const REQUIRED_CONTRACT: Readonly<Record<string, ContractEntry>> = Object.freeze({
   R1: req(false),
-  R3: req(false),
+  R3: req(true),
   R4: req(false),
   R5: req(false),
   R6: req(false),

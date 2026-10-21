@@ -1,0 +1,14 @@
+---
+/** Breadcrumbs — "Home › label" (CD §B); labels equal the BreadcrumbList names (SP E.4). Not on Home. */
+interface Props {
+  label: string;
+  path: string;
+}
+const { label, path } = Astro.props;
+---
+<nav class="breadcrumbs" aria-label="Percorso di navigazione">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href={path} aria-current="page">{label}</a></li>
+  </ol>
+</nav>

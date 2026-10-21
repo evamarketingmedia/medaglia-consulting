@@ -1,0 +1,135 @@
+---
+/**
+ * Sviluppo reti commerciali — CD §C5; SP C.5. Phase 3: shorter paragraphs (SCOPE CHANGE vs CD
+ * wording); H1/H2s unchanged.
+ * "Cosa facciamo" is the main service-detail block; "Reti miste", "Sguardo esterno" and
+ * "Come possiamo lavorare insieme" are supporting blocks. The R7 line stays body text, never a heading.
+ * D34: "Reti miste" shortened (no repetition of the partnership list); repeated duration removed.
+ * D35: less visible text. "Da dove parti" is a two-way split (riorganizzare / costruire);
+ * "Cosa facciamo" is five concise tiles (no bullet runs; R7 line still body text in "Persone");
+ * "Reti miste" + "Sguardo esterno" sit on one steel band; experience lines shortened.
+ * D36: "Quale livello di collaborazione fa per te" renamed "Come possiamo lavorare insieme"
+ * (H2 only) and shown as four wide cards; the Formazione card gains its existing context link.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import CtaBlock from '../components/ui/CtaBlock.astro';
+import ContextLink from '../components/ui/ContextLink.astro';
+import ExperienceBlock from '../components/patterns/ExperienceBlock.astro';
+import { ROUTES } from '../content/site.ts';
+import { breadcrumbNode, serviceNode } from '../lib/seo/jsonld.ts';
+
+const route = ROUTES.reti;
+const schema = (base: string) => [serviceNode(base, 'reti'), breadcrumbNode(base, route.path, route.breadcrumb)];
+---
+<BaseLayout title={route.title} description={route.description} robots={route.robots} path={route.path} pageKey="reti" schema={schema}>
+  <Hero
+    cta
+    breadcrumb={{ label: route.breadcrumb, path: route.path }}
+    eyebrow="Reti commerciali"
+    title="Sviluppo di reti commerciali per PMI B2B e industriali"
+  >
+    <p>Reti più organizzate ed efficaci, che non dipendono da una sola persona: lavoriamo su metodo, persone, obiettivi, processi e canali di vendita.</p>
+  </Hero>
+
+  <section class="section section--tight" aria-labelledby="da-dove">
+    <div class="container stack">
+      <h2 id="da-dove" class="stack__heading stack__heading--wide">Da dove parti: una rete vendita da riorganizzare o da costruire</h2>
+      <div class="fork">
+        <div class="fork__item">
+          <p class="fork__verb" aria-hidden="true">Riorganizzare</p>
+          <h3>Hai già una rete commerciale</h3>
+          <p>La analizziamo e la riorganizziamo: ruoli, metodo, obiettivi, monitoraggio.</p>
+        </div>
+        <div class="fork__item fork__item--dark on-dark">
+          <p class="fork__verb" aria-hidden="true">Costruire</p>
+          <h3>Vuoi costruirla da zero</h3>
+          <p>Definiamo insieme struttura, metodo e canali con cui partire.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="cosa-facciamo">
+    <div class="container stack">
+      <h2 id="cosa-facciamo" class="stack__heading stack__heading--large">Cosa facciamo</h2>
+      <div class="tiles">
+        <div class="tiles__item">
+          <h3>Organizzazione e metodo</h3>
+          <p>Ruoli chiari e processi commerciali replicabili.</p>
+        </div>
+        <div class="tiles__item">
+          <h3>Obiettivi e monitoraggio</h3>
+          <p>Obiettivi e KPI, gli indicatori che misurano l'andamento delle attività.</p>
+        </div>
+        <div class="tiles__item tiles__item--accent">
+          <h3>Persone</h3>
+          <p>Formazione, affiancamento, piani di carriera e sistemi incentivanti. Supporto nell'inserimento di nuove figure commerciali, quando necessario.</p>
+          <p class="inline-link"><ContextLink to="formazione" /></p>
+        </div>
+        <div class="tiles__item">
+          <h3>Crescita</h3>
+          <p>Nuove opportunità commerciali e di mercato.</p>
+        </div>
+        <div class="tiles__item">
+          <h3>Partnership e canali indiretti</h3>
+          <p>Segnalatori, rivenditori e partner.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band band--steel on-dark">
+    <div class="container band__inner">
+      <section class="band__item" aria-labelledby="reti-miste">
+        <h2 id="reti-miste" class="band__heading">Reti miste e partnership</h2>
+        <p>I canali indiretti ampliano le opportunità, se organizzati con ruoli, regole e obiettivi chiari.</p>
+      </section>
+      <section class="band__item" aria-labelledby="sguardo-esterno">
+        <h2 id="sguardo-esterno" class="band__heading">Il valore di uno sguardo esterno</h2>
+        <p>Dall'interno è difficile vedere inefficienze e opportunità della rete. Una prospettiva esterna le rende evidenti.</p>
+      </section>
+    </div>
+  </div>
+
+  <ExperienceBlock
+    id="esperienza"
+    title="L'esperienza dietro il nostro lavoro sulle reti"
+    items={[
+      { label: 'Creazione e gestione di reti commerciali', text: 'costruire, formare e coordinare una rete strutturata.' },
+      { label: 'Vendita diretta e sviluppo di partnership', text: 'partner, segnalatori e canali indiretti.' },
+      { label: 'Sviluppo di strutture commerciali industriali', text: 'metodo, KPI e rete mista in ambito industriale.' },
+    ]}
+  />
+
+  {/* D36: four wide collaboration cards (2×2 desktop). Descriptions are the existing route lines. */}
+  <section class="section" aria-labelledby="quale-livello">
+    <div class="container stack">
+      <h2 id="quale-livello" class="stack__heading">Come possiamo lavorare insieme</h2>
+      <ul class="modes">
+        <li class="modes__card modes__card--lead on-dark">
+          <h3 class="modes__title">Affiancamento continuativo</h3>
+          <p class="modes__text">Per costruire il metodo e seguirne l'applicazione.</p>
+          <p class="modes__cta"><ContextLink to="affiancamento" /></p>
+        </li>
+        <li class="modes__card">
+          <h3 class="modes__title">Consulenza mirata</h3>
+          <p class="modes__text">Per un'esigenza specifica.</p>
+          <p class="modes__cta"><ContextLink to="consulenza" /></p>
+        </li>
+        <li class="modes__card">
+          <h3 class="modes__title">Sviluppo commerciale operativo</h3>
+          <p class="modes__text">Per un coinvolgimento diretto.</p>
+          <p class="modes__cta"><ContextLink to="operativo" /></p>
+        </li>
+        <li class="modes__card modes__card--steel">
+          <h3 class="modes__title">Formazione</h3>
+          <p class="modes__text">Per rafforzare le competenze della rete.</p>
+          <p class="modes__cta"><ContextLink to="formazione" /></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <CtaBlock />
+</BaseLayout>

@@ -1,0 +1,106 @@
+---
+/**
+ * Sviluppo commerciale operativo — CD §C4; SP C.4. Phase 3: shorter paragraphs (SCOPE CHANGE vs
+ * CD wording); H1/H2s unchanged.
+ * The [PRE-LAUNCH] service-boundary item (R16) is NOT rendered: no exclusions are published.
+ * "Competenze complementari quando servono" is a compact supporting block, visually distinct
+ * from the commercial-partnership section.
+ * D34: "Quando è indicato", "Come si parte" and the affiancamento cross-link shortened.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/ui/Hero.astro';
+import CtaBlock from '../components/ui/CtaBlock.astro';
+import ContextLink from '../components/ui/ContextLink.astro';
+import ExperienceBlock from '../components/patterns/ExperienceBlock.astro';
+import { ROUTES } from '../content/site.ts';
+import { breadcrumbNode, serviceNode } from '../lib/seo/jsonld.ts';
+
+const route = ROUTES.operativo;
+const schema = (base: string) => [serviceNode(base, 'operativo'), breadcrumbNode(base, route.path, route.breadcrumb)];
+---
+<BaseLayout title={route.title} description={route.description} robots={route.robots} path={route.path} pageKey="operativo" schema={schema}>
+  <Hero
+    cta
+    interesse={route.interesse}
+    breadcrumb={{ label: route.breadcrumb, path: route.path }}
+    eyebrow="Sviluppo commerciale operativo"
+    title="Sviluppo commerciale operativo: partecipiamo direttamente all'attività commerciale"
+  >
+    <p>Il livello di collaborazione più operativo: entriamo direttamente nell'organizzazione, nella gestione e nello sviluppo dell'attività commerciale della tua azienda.</p>
+  </Hero>
+
+  <section class="section" aria-labelledby="comprende">
+    <div class="container rail">
+      <h2 id="comprende" class="rail__heading">Cosa comprende</h2>
+      <div class="rail__body">
+        <ul class="ticks ticks--large">
+          <li>Organizzare le attività commerciali</li>
+          <li>Coordinare i commerciali</li>
+          <li>Definire le strategie</li>
+          <li>Monitorare i risultati</li>
+          <li>Sviluppare nuovi clienti</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="quando-indicato">
+    <div class="container rail">
+      <h2 id="quando-indicato" class="rail__heading">Quando è indicato</h2>
+      <div class="rail__body">
+        <p>Quando serve un coinvolgimento diretto, ad esempio se:</p>
+        <ul class="marks">
+          <li>lo sviluppo commerciale dipende troppo dall'imprenditore;</li>
+          <li>manca una struttura commerciale organizzata;</li>
+          <li>serve una strategia per acquisire nuovi clienti e sviluppare nuove opportunità.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="partnership">
+    <div class="container rail">
+      <h2 id="partnership" class="rail__heading">Partnership e nuove opportunità</h2>
+      <div class="rail__body">
+        <p class="lead">Individuiamo e costruiamo collaborazioni con segnalatori, rivenditori e partner strategici, con l'obiettivo di aumentare le opportunità di business.</p>
+        <ContextLink to="reti" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--compact" aria-labelledby="competenze">
+    <div class="container compact compact--aside">
+      <h2 id="competenze" class="compact__heading">Competenze complementari quando servono</h2>
+      <p>Quando un progetto lo richiede, coinvolgiamo professionisti e imprese che collaborano con noi, in base alle competenze necessarie.</p>
+    </div>
+  </section>
+
+  <section class="section section--rule" aria-labelledby="come-si-parte">
+    <div class="container rail">
+      <h2 id="come-si-parte" class="rail__heading">Come si parte</h2>
+      <div class="rail__body">
+        <p>Dall'analisi dell'attività commerciale esistente. Su questa base definiamo strategia, metodo e attività.</p>
+      </div>
+    </div>
+  </section>
+
+  <ExperienceBlock
+    id="esperienza"
+    title="L'esperienza dietro lo sviluppo operativo"
+    items={[
+      { label: 'Vendita diretta e sviluppo di partnership', text: 'vendita B2B in prima persona, supporto ad altri venditori e alle trattative, partnership e canali indiretti con segnalatori e partner.' },
+    ]}
+  />
+
+  <section class="section section--compact section--paper" aria-labelledby="piu-adatto">
+    <div class="container compact compact--link">
+      <h2 id="piu-adatto" class="compact__heading">Quando è più adatto l'affiancamento continuativo</h2>
+      <div>
+        <p>Se l'obiettivo è costruire un metodo commerciale e seguirne l'applicazione nel tempo.</p>
+        <ContextLink to="affiancamento" />
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock interesse={route.interesse} />
+</BaseLayout>
