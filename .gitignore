@@ -45,3 +45,6 @@ tmp/
 .eslintcache
 *.tsbuildinfo
 coverage/
+
+# Local reference material (never commit)
+reference/
