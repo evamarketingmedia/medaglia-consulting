@@ -33,6 +33,7 @@ function init(form: HTMLFormElement): void {
   const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
   const honeypot = form.querySelector<HTMLInputElement>('[data-honeypot]');
   const origine = form.querySelector<HTMLInputElement>('[data-origine]');
+  const previewNotice = form.querySelector<HTMLElement>('[data-preview-notice]'); // non-production only
   if (!summary || !summaryList || !status || !alertBox || !failureTpl || !submit || !honeypot || !origine) return;
   const submitLabel = submit.textContent ?? '';
 
@@ -129,8 +130,15 @@ function init(form: HTMLFormElement): void {
       summary.focus();
       return;
     }
+    const choice = chooseAdapter(currentSiteEnv(), undefined, window.location.search);
+    if (choice === 'preview-disabled') {
+      // Preview: nothing is sent, no success, no navigation. Announce and focus the notice.
+      status.textContent = previewNotice?.textContent?.trim() ?? '';
+      previewNotice?.focus();
+      return;
+    }
     setBusy(true);
-    const adapter = createAdapter(chooseAdapter(currentSiteEnv(), undefined, window.location.search));
+    const adapter = createAdapter(choice);
     const controller = new AbortController();
     const timer = window.setTimeout(() => controller.abort(), TIMEOUT_MS);
     let ok = false;

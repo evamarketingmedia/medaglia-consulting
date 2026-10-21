@@ -41,6 +41,8 @@ describe('astro build — non-production', () => {
     });
     expect(Object.keys(recordOf()).sort()).toEqual(['builtAt', 'robotsDefault', 'schema', 'siteEnv', 'siteOrigin']);
     expect(robotsOf(readText(`${project}/dist/index.html`))).toBe('noindex, nofollow');
+    expect(readText(`${project}/dist/contatti/index.html`)).toContain('data-preview-notice');
+    expect(readText(`${project}/dist/contatti/index.html`)).toContain('Il modulo di contatto è in fase di attivazione. Per questa anteprima puoi contattarci telefonicamente.');
     const c = runCheck([], { RELEASE_CHECK_ROOT: project });
     expect(c.status, c.output).toBe(0);
     const p = runCheck(['--mode=production'], { RELEASE_CHECK_ROOT: project });
@@ -89,6 +91,11 @@ describe('astro build — production with a FIXTURE domain still fails the relea
     expect(chi).toContain(`"image":"${FIXTURE_ORIGIN}/images/alberto-medaglia.png"`);
     expect(chi).toMatch(/<img[^>]*alt="Alberto Medaglia"/);
     expect(chi).toContain('Senior Manager');
+    // No preview activation notice in production.
+    const contatti = readText(`${project}/dist/contatti/index.html`);
+    expect(contatti).toContain('data-contact-form');
+    expect(contatti).not.toContain('data-preview-notice');
+    expect(contatti).not.toContain('in fase di attivazione');
     // JSON-LD present on indexable pages, with the E.164 phone and no pruned properties.
     const home = readText(`${project}/dist/index.html`);
     expect(home).toContain('"telephone":"+393341201847"');

@@ -81,6 +81,8 @@ describe('pages in the non-production test env', () => {
     expect(html).not.toContain('[MISSING: email pubblicabile]');
     expect(html).not.toContain('Orari');
     expect(html).toContain('href="tel:+393341201847"');
+    // Preview activation notice (non-production only), phone via PhoneLink, no email.
+    expect(html).toMatch(/<p class="note" tabindex="-1" data-preview-notice>Il modulo di contatto è in fase di attivazione\. Per questa anteprima puoi contattarci telefonicamente\. <a class="phone-link" href="tel:\+393341201847" data-placement="form-preview">0039 334 1201847<\/a><\/p>/);
     // No JSON-LD for the reserved non-production host.
     expect(html).not.toContain('application/ld+json');
   });

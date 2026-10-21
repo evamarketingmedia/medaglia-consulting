@@ -3,8 +3,10 @@
  *
  * No real provider exists. Only mock adapters (./adapters/mock.ts), and only outside
  * production:
- *   - non-production, no provider configured -> 'mock-success' (navigates to /grazie/),
- *     unless a dev flag asks for 'mock-failure' or 'mock-timeout';
+ *   - non-production, no provider configured -> 'preview-disabled': nothing is sent, no
+ *     success is ever simulated, the form shows the preview activation notice (phone only),
+ *     unless a dev flag asks for 'mock-failure' or 'mock-timeout' (both end in the failure
+ *     message, never in a success page);
  *   - production, no provider -> 'unavailable': every submission shows the failure
  *     message (nothing is sent, success is never faked). The release check fails a
  *     production release anyway while R19 is open.
@@ -14,10 +16,12 @@
  */
 import type { SiteEnv } from '../env.ts';
 
-export type SubmitResult = { readonly ok: true } | { readonly ok: false; readonly reason: 'failure' | 'timeout' | 'unavailable' };
+export type SubmitResult =
+  | { readonly ok: true }
+  | { readonly ok: false; readonly reason: 'failure' | 'timeout' | 'unavailable' | 'preview' };
 
 export type FormAdapter = {
-  readonly id: 'mock-success' | 'mock-failure' | 'mock-timeout' | 'unavailable';
+  readonly id: 'preview-disabled' | 'mock-failure' | 'mock-timeout' | 'unavailable';
   submit(data: FormData, signal: AbortSignal): Promise<SubmitResult>;
 };
 
@@ -37,5 +41,5 @@ export function chooseAdapter(env: SiteEnv, provider: string | undefined, search
   }
   if (flag === 'errore') return 'mock-failure';
   if (flag === 'timeout') return 'mock-timeout';
-  return 'mock-success';
+  return 'preview-disabled';
 }

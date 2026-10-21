@@ -19,6 +19,8 @@ import { facts } from '../../content/facts.ts';
 import { currentSiteEnv } from '../../lib/site-env.ts';
 
 const showEmail = isVisible(facts.email, currentSiteEnv());
+// Non-production only (no provider connected): static activation notice, phone only.
+const showPreviewNotice = currentSiteEnv() !== 'production';
 
 const situazione = ['Ha già una rete commerciale', 'Vuole costruirla', 'Altro'] as const;
 const interesse = [
@@ -127,6 +129,10 @@ const orario = ['Mattina', 'Pomeriggio'] as const;
     <label for="f-hp">Lascia vuoto questo campo</label>
     <input id="f-hp" name="sito_web" type="text" tabindex="-1" autocomplete="off" data-honeypot />
   </div>
+
+  {showPreviewNotice && (
+    <p class="note" tabindex="-1" data-preview-notice>Il modulo di contatto è in fase di attivazione. Per questa anteprima puoi contattarci telefonicamente. <PhoneLink placement="form-preview" /></p>
+  )}
 
   <div class="form-submit">
     <button type="submit" class="btn btn--primary btn--large" data-submit>{CTA_LABEL}</button>

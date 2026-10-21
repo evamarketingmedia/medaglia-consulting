@@ -23,8 +23,9 @@ async function settle(ms: number, signal: AbortSignal, result: SubmitResult): Pr
 
 export function createAdapter(choice: AdapterChoice): FormAdapter {
   switch (choice) {
-    case 'mock-success':
-      return { id: choice, submit: (_d, signal) => settle(600, signal, { ok: true }) };
+    case 'preview-disabled':
+      // Non-production preview: nothing is sent and success is never simulated.
+      return { id: choice, submit: async () => ({ ok: false, reason: 'preview' }) };
     case 'mock-failure':
       return { id: choice, submit: (_d, signal) => settle(600, signal, { ok: false, reason: 'failure' }) };
     case 'mock-timeout':

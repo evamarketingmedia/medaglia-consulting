@@ -122,12 +122,23 @@ describe('origine (hidden field)', () => {
 
 describe('form adapter boundary (mock only, N2)', () => {
   it('chooses mock adapters only outside production', () => {
-    expect(chooseAdapter('non-production', undefined, '')).toBe('mock-success');
+    expect(chooseAdapter('non-production', undefined, '')).toBe('preview-disabled');
     expect(chooseAdapter('non-production', undefined, '?mock-invio=errore')).toBe('mock-failure');
     expect(chooseAdapter('non-production', undefined, '?mock-invio=timeout')).toBe('mock-timeout');
     expect(chooseAdapter('production', undefined, '')).toBe('unavailable');
     expect(chooseAdapter('production', undefined, '?mock-invio=errore')).toBe('unavailable');
     expect(chooseAdapter('non-production', 'some-provider', '')).toBe('unavailable');
+  });
+  it('never chooses a simulated success outside production', async () => {
+    for (const search of ['', '?mock-invio=successo', '?mock-invio=ok', '?mock-invio=', '?mock-invio=errore', '?mock-invio=timeout', '?x=1']) {
+      const choice = chooseAdapter('non-production', undefined, search);
+      expect(choice).not.toBe('mock-success');
+      const c = new AbortController();
+      const p = createAdapter(choice).submit(new FormData(), c.signal);
+      c.abort();
+      expect((await p).ok).toBe(false);
+    }
+    expect(await createAdapter('preview-disabled').submit(new FormData(), new AbortController().signal)).toEqual({ ok: false, reason: 'preview' });
   });
   it('mock adapters resolve without network', async () => {
     const c = new AbortController();
