@@ -25,6 +25,44 @@ describe('resolveSiteEnv (S8)', () => {
     expect(resolveSiteEnv({ CONTEXT: 'production', PUBLIC_SITE_ENV: 'preview' }).ok).toBe(false);
     expect(resolveSiteEnv({ CONTEXT: 'production', PUBLIC_SITE_ENV: 'development' }).ok).toBe(false);
   });
+  it('CLIENT PREVIEW (D37): CONTEXT=production + the exact client-preview host is a non-production preview', () => {
+    const host = 'https://medaglia-consulting.netlify.app';
+    expect(resolveSiteEnv({ CONTEXT: 'production', SITE_URL: host })).toEqual({
+      ok: true,
+      siteEnv: 'non-production',
+      reason: 'client-preview host (D37)',
+    });
+    expect(resolveSiteUrl('non-production', host)).toEqual({ ok: true, site: host });
+  });
+  it('CLIENT PREVIEW (D37): anything else stays production and keeps failing the production SITE_URL check', () => {
+    for (const u of [
+      'https://other-site.netlify.app',
+      'https://x.medaglia-consulting.netlify.app',
+      'https://medaglia-consulting.netlify.app/',
+      'https://medaglia-consulting.netlify.app/path',
+      'https://user:pw@medaglia-consulting.netlify.app',
+      'https://medaglia-consulting.netlify.app:8443',
+      'http://medaglia-consulting.netlify.app',
+    ]) {
+      const r = resolveSiteEnv({ CONTEXT: 'production', SITE_URL: u });
+      expect(r, u).toMatchObject({ ok: true, siteEnv: 'production' });
+      expect(resolveSiteUrl('production', u).ok, u).toBe(false);
+    }
+    // a lookalike suffix is NOT the client-preview host: it stays production (behaviour unchanged;
+    // the production validator treats it like any other apex, exactly as before D37)
+    const lookalike = 'https://medaglia-consulting.netlify.app.evil.com';
+    expect(resolveSiteEnv({ CONTEXT: 'production', SITE_URL: lookalike })).toMatchObject({ ok: true, siteEnv: 'production', reason: 'CONTEXT=production' });
+    // explicit PUBLIC_SITE_ENV=production: production, and the validator still rejects the host
+    const host = 'https://medaglia-consulting.netlify.app';
+    expect(resolveSiteEnv({ CONTEXT: 'production', PUBLIC_SITE_ENV: 'production', SITE_URL: host })).toMatchObject({ ok: true, siteEnv: 'production' });
+    expect(resolveSiteUrl('production', host).ok).toBe(false);
+    // conflicts stay errors
+    expect(resolveSiteEnv({ CONTEXT: 'production', PUBLIC_SITE_ENV: 'preview', SITE_URL: host }).ok).toBe(false);
+    expect(resolveSiteEnv({ CONTEXT: 'production', PUBLIC_SITE_ENV: 'development', SITE_URL: host }).ok).toBe(false);
+    // a real apex is unchanged
+    expect(resolveSiteEnv({ CONTEXT: 'production', SITE_URL: FIXTURE })).toMatchObject({ ok: true, siteEnv: 'production', reason: 'CONTEXT=production' });
+    expect(resolveSiteUrl('production', FIXTURE)).toEqual({ ok: true, site: FIXTURE });
+  });
   it('deploy-preview / branch-deploy never produce production', () => {
     for (const c of ['deploy-preview', 'branch-deploy']) {
       expect(resolveSiteEnv({ CONTEXT: c })).toMatchObject({ ok: true, siteEnv: 'non-production' });
